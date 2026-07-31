@@ -1,17 +1,39 @@
 .star-system {
+  --star-colour: #ffffff;
+
   appearance: none;
-  width: 1px;
-  height: 1px;
+  position: absolute;
+  width: 140px;
+  height: 140px;
   margin: 0;
   padding: 0;
   border: 0;
-  border-radius: 0;
+  border-radius: 50%;
   background: transparent;
   color: inherit;
   font: inherit;
   cursor: pointer;
   isolation: isolate;
   overflow: visible;
+  pointer-events: auto;
+  touch-action: manipulation;
+}
+
+/*
+  The button is centred by the inline transform in StarSystem.tsx.
+
+  Its visible contents must therefore be positioned in the middle
+  of the new 140px hover area rather than at the top-left corner.
+*/
+
+.star-system__visual {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1px;
+  height: 1px;
+  overflow: visible;
+  pointer-events: none;
 }
 
 .star-system:focus {
@@ -19,19 +41,11 @@
 }
 
 .star-system:focus-visible {
-  outline: 1px solid rgb(255 255 255 / 65%);
-  outline-offset: 18px;
-  border-radius: 50%;
+  outline: 1px solid rgb(255 255 255 / 45%);
+  outline-offset: -12px;
 }
 
-.star-system__visual {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1px;
-  height: 1px;
-  overflow: visible;
-}
+/* Shared positioning */
 
 .star-system__core,
 .star-system__glow,
@@ -49,13 +63,27 @@
   z-index: 4;
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  background: #fff;
+  background: color-mix(
+    in srgb,
+    white 60%,
+    var(--star-colour) 40%
+  );
   box-shadow:
-    0 0 4px rgb(255 255 255 / 95%),
-    0 0 10px rgb(255 255 255 / 55%);
+    0 0 3px rgb(255 255 255 / 75%),
+    0 0 10px color-mix(
+      in srgb,
+      var(--star-colour) 48%,
+      transparent
+    ),
+    0 0 20px color-mix(
+      in srgb,
+      var(--star-colour) 18%,
+      transparent
+    );
   transition:
-    transform 220ms ease,
-    box-shadow 220ms ease;
+    transform 240ms ease,
+    box-shadow 240ms ease,
+    filter 240ms ease;
 }
 
 .star-system__core::before {
@@ -63,15 +91,19 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 500%;
+  width: 280%;
   height: 1px;
   transform: translate(-50%, -50%);
   background: linear-gradient(
     90deg,
     transparent,
-    rgb(255 255 255 / 35%),
+    rgb(255 255 255 / 20%),
     transparent
   );
+  opacity: 0.55;
+  transition:
+    width 240ms ease,
+    opacity 240ms ease;
 }
 
 .star-system__core::after {
@@ -80,14 +112,18 @@
   top: 50%;
   left: 50%;
   width: 1px;
-  height: 500%;
+  height: 280%;
   transform: translate(-50%, -50%);
   background: linear-gradient(
     180deg,
     transparent,
-    rgb(255 255 255 / 30%),
+    rgb(255 255 255 / 18%),
     transparent
   );
+  opacity: 0.5;
+  transition:
+    height 240ms ease,
+    opacity 240ms ease;
 }
 
 .star-system__core--small {
@@ -105,18 +141,49 @@
   height: 15px;
 }
 
+/* Star colours */
+
+.star-system__core--warm,
+.star-system__glow--warm {
+  --star-colour: #f2a44b;
+}
+
+.star-system__core--cool,
+.star-system__core--blue,
+.star-system__glow--cool,
+.star-system__glow--blue {
+  --star-colour: #6f9fe8;
+}
+
+.star-system__core--cyan,
+.star-system__glow--cyan {
+  --star-colour: #4bc4d5;
+}
+
+.star-system__core--violet,
+.star-system__glow--violet {
+  --star-colour: #a879df;
+}
+
+.star-system__core--white,
+.star-system__glow--white {
+  --star-colour: #ffffff;
+}
+
 /* Glow */
 
 .star-system__glow {
   z-index: 1;
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  opacity: 0.7;
-  filter: blur(7px);
-  animation: star-system-breathe 3.8s ease-in-out infinite;
+  background: var(--star-colour);
+  opacity: 0.34;
+  filter: blur(11px);
+  animation: star-system-breathe 4.5s ease-in-out infinite;
   transition:
-    opacity 220ms ease,
-    transform 220ms ease;
+    opacity 240ms ease,
+    transform 240ms ease,
+    filter 240ms ease;
 }
 
 .star-system__glow--small {
@@ -134,74 +201,19 @@
   height: 62px;
 }
 
-.star-system__glow--warm {
-  background: rgb(255 184 92 / 70%);
-}
-
-.star-system__glow--cool,
-.star-system__glow--blue {
-  background: rgb(116 168 255 / 70%);
-}
-
-.star-system__glow--cyan {
-  background: rgb(72 224 255 / 75%);
-}
-
-.star-system__glow--violet {
-  background: rgb(184 117 255 / 75%);
-}
-
-.star-system__glow--white {
-  background: rgb(255 255 255 / 65%);
-}
-
-/* Core colours */
-
-.star-system__core--warm {
-  background: #fff4d6;
-  box-shadow:
-    0 0 5px rgb(255 246 210 / 100%),
-    0 0 14px rgb(255 179 76 / 80%),
-    0 0 30px rgb(255 143 43 / 35%);
-}
-
-.star-system__core--cool,
-.star-system__core--blue {
-  background: #e8f1ff;
-  box-shadow:
-    0 0 5px rgb(235 244 255 / 100%),
-    0 0 14px rgb(112 164 255 / 80%),
-    0 0 30px rgb(77 119 255 / 35%);
-}
-
-.star-system__core--cyan {
-  background: #e9fdff;
-  box-shadow:
-    0 0 5px rgb(235 255 255 / 100%),
-    0 0 14px rgb(67 226 255 / 85%),
-    0 0 32px rgb(29 174 255 / 40%);
-}
-
-.star-system__core--violet {
-  background: #f6edff;
-  box-shadow:
-    0 0 5px rgb(250 242 255 / 100%),
-    0 0 14px rgb(187 116 255 / 85%),
-    0 0 32px rgb(140 72 255 / 40%);
-}
-
-.star-system__core--white {
-  background: #fff;
-}
-
 /* Orbits */
 
 .star-system__orbit {
   z-index: 2;
-  border: 1px solid rgb(255 255 255 / 13%);
+  border: 1px solid rgb(255 255 255 / 6%);
   border-radius: 50%;
   transform-origin: center;
   overflow: visible;
+  opacity: 0.8;
+  transition:
+    border-color 240ms ease,
+    opacity 240ms ease,
+    filter 240ms ease;
 }
 
 .star-system__orbit-rotation {
@@ -209,10 +221,11 @@
   inset: 0;
   display: block;
   border-radius: 50%;
+  transform-origin: center;
   animation-name: star-system-orbit;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-  transform-origin: center;
+  pointer-events: none;
 }
 
 .star-system__satellite-position {
@@ -221,6 +234,7 @@
   right: 0;
   display: block;
   transform: translate(50%, -50%);
+  pointer-events: none;
 }
 
 .star-system__satellite {
@@ -228,66 +242,120 @@
   min-width: 2px;
   min-height: 2px;
   border-radius: 50%;
-  background: #fff;
+  background: rgb(255 255 255 / 82%);
   box-shadow:
-    0 0 4px rgb(255 255 255 / 95%),
-    0 0 9px rgb(157 201 255 / 55%);
+    0 0 3px rgb(255 255 255 / 55%),
+    0 0 7px rgb(176 205 255 / 25%);
+  transition:
+    transform 240ms ease,
+    background-color 240ms ease,
+    box-shadow 240ms ease;
 }
 
 /* Label */
 
 .star-system__label {
   position: absolute;
-  top: 19px;
-  left: 50%;
   z-index: 6;
   display: block;
   width: max-content;
   max-width: 180px;
   transform: translateX(-50%);
-  color: rgb(255 255 255 / 65%);
-  font-size: 11px;
-  font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: 0.08em;
+  color: rgb(255 255 255 / 44%);
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: 0.11em;
   text-align: center;
   text-transform: uppercase;
-  text-shadow: 0 1px 10px rgb(0 0 0 / 90%);
-  transition:
-    color 200ms ease,
-    opacity 200ms ease,
-    transform 200ms ease;
+  text-shadow: 0 1px 9px rgb(0 0 0 / 85%);
   pointer-events: none;
+  transition:
+    color 240ms ease,
+    opacity 240ms ease,
+    transform 240ms ease;
 }
 
-/* Interaction */
+/* Hover and active states */
 
 .star-system:hover .star-system__core,
+.star-system:focus-visible .star-system__core,
 .star-system--active .star-system__core {
-  transform: translate(-50%, -50%) scale(1.35);
+  transform: translate(-50%, -50%) scale(1.22);
+  filter: brightness(1.1);
+  box-shadow:
+    0 0 4px rgb(255 255 255 / 90%),
+    0 0 14px color-mix(
+      in srgb,
+      var(--star-colour) 62%,
+      transparent
+    ),
+    0 0 28px color-mix(
+      in srgb,
+      var(--star-colour) 25%,
+      transparent
+    );
+}
+
+.star-system:hover .star-system__core::before,
+.star-system:focus-visible .star-system__core::before,
+.star-system--active .star-system__core::before {
+  width: 360%;
+  opacity: 0.85;
+}
+
+.star-system:hover .star-system__core::after,
+.star-system:focus-visible .star-system__core::after,
+.star-system--active .star-system__core::after {
+  height: 360%;
+  opacity: 0.75;
 }
 
 .star-system:hover .star-system__glow,
+.star-system:focus-visible .star-system__glow,
 .star-system--active .star-system__glow {
+  opacity: 0.6;
+  filter: blur(13px);
+  transform: translate(-50%, -50%) scale(1.15);
+}
+
+.star-system:hover .star-system__orbit,
+.star-system:focus-visible .star-system__orbit,
+.star-system--active .star-system__orbit {
+  border-color: rgb(255 255 255 / 17%);
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1.25);
+  filter: drop-shadow(0 0 3px rgb(255 255 255 / 8%));
+}
+
+.star-system:hover .star-system__satellite,
+.star-system:focus-visible .star-system__satellite,
+.star-system--active .star-system__satellite {
+  transform: scale(1.15);
+  background: #fff;
+  box-shadow:
+    0 0 4px rgb(255 255 255 / 80%),
+    0 0 9px rgb(176 205 255 / 40%);
 }
 
 .star-system:hover .star-system__label,
+.star-system:focus-visible .star-system__label,
+.star-system--active .star-system__label,
 .star-system__label--active {
-  color: #fff;
+  color: rgb(255 255 255 / 88%);
   transform: translateX(-50%) translateY(3px);
 }
 
+/* Featured project */
+
 .star-system--featured .star-system__label {
-  color: rgb(255 255 255 / 82%);
+  color: rgb(255 255 255 / 62%);
 }
 
 .star-system--featured .star-system__orbit {
-  border-color: rgb(255 255 255 / 19%);
+  border-color: rgb(255 255 255 / 9%);
 }
 
-/* Animation */
+/* Animations */
 
 @keyframes star-system-orbit {
   from {
@@ -302,13 +370,13 @@
 @keyframes star-system-breathe {
   0%,
   100% {
-    opacity: 0.55;
-    scale: 0.92;
+    opacity: 0.28;
+    scale: 0.98;
   }
 
   50% {
-    opacity: 0.85;
-    scale: 1.08;
+    opacity: 0.4;
+    scale: 1.035;
   }
 }
 
@@ -319,7 +387,11 @@
   }
 
   .star-system__core,
+  .star-system__core::before,
+  .star-system__core::after,
   .star-system__glow,
+  .star-system__orbit,
+  .star-system__satellite,
   .star-system__label {
     transition: none;
   }

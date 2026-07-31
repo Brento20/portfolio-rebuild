@@ -1,5 +1,4 @@
 import type { Project } from "../../../types/project";
-import { Label } from "./Label";
 import { OrbitRenderer } from "./OrbitRenderer";
 import { Star } from "./Star";
 import "./star-system.css";
@@ -51,11 +50,6 @@ export function StarSystem({
           isFeatured={isFeatured}
         />
       </span>
-
-      <Label
-        title={project.title}
-        isActive={isActive}
-      />
     </button>
   );
 }
