@@ -1,13 +1,9 @@
-import type { ProjectStar } from "../../types/project";
-
 interface NodeGlowProps {
-  star: ProjectStar;
   isActive: boolean;
   isFeatured: boolean;
 }
 
 export function NodeGlow({
-  star,
   isActive,
   isFeatured,
 }: NodeGlowProps) {
@@ -15,8 +11,6 @@ export function NodeGlow({
     <span
       className={[
         "project-node__glow",
-        `project-node__glow--${star.glow}`,
-        `project-node__glow--${star.size}`,
         isActive ? "project-node__glow--active" : "",
         isFeatured ? "project-node__glow--featured" : "",
       ]

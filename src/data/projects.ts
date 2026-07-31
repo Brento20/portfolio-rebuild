@@ -5,257 +5,306 @@ export const projects: Project[] = [
     id: "medley-kangaroo-point",
     title: "Medley Kangaroo Point",
     url: "https://medleykp.com.au/",
-    location: "Brisbane, QLD",
+    location: "Brisbane, Queensland",
     category: "Client Website",
-
     summary:
-      "A premium riverside restaurant and events venue focused on dining, weddings and private functions.",
-
+      "A premium riverside restaurant and events website balancing everyday dining with weddings, private events, catering and live entertainment. My work included custom styling, technical SEO, JavaScript enhancements and domain support.",
     industries: ["Hospitality", "Events"],
-
     capabilities: [
-      "CSS / LESS",
-      "JavaScript",
+      "CSS and LESS Styling",
       "Technical SEO",
+      "Custom JavaScript",
       "Domain Support",
     ],
-
-    technologies: [
-      "Squarespace",
-      "LESS",
-      "JavaScript",
-    ],
-
+    technologies: ["Squarespace", "LESS", "JavaScript", "HTML", "CSS"],
     featured: true,
-
     profile: {
-      frontend: 90,
-      seo: 85,
-      design: 60,
-      cms: 80,
-      backend: 10,
+      design: 7,
+      development: 7,
+      seo: 8,
+      accessibility: 6,
+      infrastructure: 6,
+      performance: 7,
+      cms: 8,
+      strategy: 7,
+    },
+    star: {
+      size: "medium",
+      satellites: 1,
+      orbitShape: "circle",
+      orbitDirection: "clockwise",
+      orbitDuration: 13,
+      orbitScaleX: 1,
+      orbitScaleY: 1,
+      glow: "warm",
+      tilt: 0,
     },
   },
-
   {
     id: "akiba",
     title: "AKIBA",
     url: "https://akiba.com.au/",
     location: "Canberra, ACT",
     category: "Client Website",
-
     summary:
-      "Restaurant website supporting bookings, menus and promotions.",
-
-    industries: ["Hospitality"],
-
+      "A fast-paced hospitality website for one of Canberra's best-known restaurants. The build translates a bold visual identity into a responsive experience supporting menus, promotions, reservations and events.",
+    industries: ["Hospitality", "Restaurants"],
     capabilities: [
-      "CSS / LESS",
-      "JavaScript",
+      "CSS and LESS Styling",
+      "Custom JavaScript",
       "Figma Collaboration",
       "Technical SEO",
     ],
-
-    technologies: [
-      "Squarespace",
-      "LESS",
-      "JavaScript",
-    ],
-
+    technologies: ["Squarespace", "LESS", "JavaScript", "Figma", "CSS"],
     featured: true,
-
     profile: {
-      frontend: 90,
-      seo: 80,
-      design: 80,
-      cms: 75,
-      backend: 10,
+      design: 9,
+      development: 8,
+      seo: 8,
+      accessibility: 6,
+      infrastructure: 4,
+      performance: 7,
+      cms: 7,
+      strategy: 7,
+    },
+    star: {
+      size: "large",
+      satellites: 1,
+      orbitShape: "ellipse",
+      orbitDirection: "clockwise",
+      orbitDuration: 7,
+      orbitScaleX: 1.45,
+      orbitScaleY: 0.82,
+      glow: "warm",
+      tilt: -18,
     },
   },
-
   {
     id: "girdlers",
     title: "Girdlers",
     url: "https://www.girdlers.com.au/",
-    location: "Sydney, NSW",
+    location: "Sydney, New South Wales",
     category: "Client Website",
-
     summary:
-      "Multi-location café website designed around menus, venues and brand storytelling.",
-
-    industries: ["Hospitality"],
-
+      "A multi-location café and restaurant website designed to bring several venues together under one cohesive brand. The experience supports location discovery, menus, brand storytelling and clear customer journeys.",
+    industries: ["Hospitality", "Cafés", "Multi-location"],
     capabilities: [
-      "CSS / LESS",
-      "JavaScript",
+      "CSS and LESS Styling",
+      "Custom JavaScript",
       "Figma Collaboration",
       "Technical SEO",
     ],
-
-    technologies: [
-      "Squarespace",
-      "LESS",
-      "JavaScript",
-    ],
-
+    technologies: ["Squarespace", "LESS", "JavaScript", "Figma", "CSS"],
     featured: true,
-
     profile: {
-      frontend: 90,
-      seo: 80,
-      design: 85,
-      cms: 75,
-      backend: 10,
+      design: 8,
+      development: 7,
+      seo: 8,
+      accessibility: 7,
+      infrastructure: 5,
+      performance: 7,
+      cms: 8,
+      strategy: 8,
+    },
+    star: {
+      size: "medium",
+      satellites: 1,
+      orbitShape: "ellipse",
+      orbitDirection: "counterclockwise",
+      orbitDuration: 12,
+      orbitScaleX: 1.7,
+      orbitScaleY: 0.85,
+      glow: "warm",
+      tilt: 12,
     },
   },
-
   {
     id: "studio-gaxa",
     title: "Studio GAXA",
     url: "https://www.studiogaxa.com.au/",
-    location: "Sydney, NSW",
-    category: "Client Website",
-
+    location: "Sydney, New South Wales",
+    category: "Ecommerce",
     summary:
-      "Architecture and interior design studio showcasing projects, articles and services.",
-
-    industries: ["Architecture"],
-
+      "A refined digital platform for a luxury interior and building design studio. The site combines an editorial blog, detailed project portfolio and integrated commerce while maintaining a spacious, design-led experience.",
+    industries: ["Architecture", "Interior Design", "Ecommerce"],
     capabilities: [
-      "CSS / LESS",
-      "JavaScript",
+      "CSS and LESS Styling",
+      "Custom JavaScript",
       "Figma Collaboration",
       "Technical SEO",
-      "E-commerce",
+      "Ecommerce",
       "Blog Management",
       "Portfolio Management",
     ],
-
     technologies: [
       "Squarespace",
       "LESS",
       "JavaScript",
+      "Figma",
+      "CSS",
+      "Ecommerce",
     ],
-
     featured: true,
-
     profile: {
-      frontend: 90,
-      seo: 80,
-      design: 95,
-      cms: 95,
-      backend: 10,
+      design: 10,
+      development: 8,
+      seo: 8,
+      accessibility: 7,
+      infrastructure: 5,
+      performance: 8,
+      cms: 9,
+      strategy: 9,
+    },
+    star: {
+      size: "large",
+      satellites: 1,
+      orbitShape: "ellipse",
+      orbitDirection: "counterclockwise",
+      orbitDuration: 16,
+      orbitScaleX: 1.95,
+      orbitScaleY: 0.72,
+      glow: "violet",
+      tilt: -10,
     },
   },
-
   {
     id: "huzzah",
     title: "Huzzah",
     url: "https://wearehuzzah.com/",
-    location: "Melbourne, VIC",
-    category: "Client Website",
-
+    location: "Melbourne, Victoria",
+    category: "Portfolio",
     summary:
-      "Creative agency website translating a distinctive visual identity into a responsive front-end experience.",
-
-    industries: ["Creative Agency"],
-
+      "A creative agency website that translates a distinctive visual identity into a responsive front-end experience. The work focused on expressive layouts, motion, custom styling and maintaining clarity across varied creative content.",
+    industries: ["Creative Agency", "Branding", "Marketing"],
     capabilities: [
-      "CSS / LESS",
-      "JavaScript",
+      "CSS and LESS Styling",
+      "Custom JavaScript",
       "Figma Collaboration",
       "Technical SEO",
     ],
-
-    technologies: [
-      "Squarespace",
-      "LESS",
-      "JavaScript",
-    ],
-
-    featured: true,
-
+    technologies: ["Squarespace", "LESS", "JavaScript", "Figma", "CSS"],
+    featured: false,
     profile: {
-      frontend: 90,
-      seo: 75,
-      design: 95,
-      cms: 70,
-      backend: 10,
+      design: 10,
+      development: 8,
+      seo: 7,
+      accessibility: 6,
+      infrastructure: 4,
+      performance: 7,
+      cms: 7,
+      strategy: 7,
+    },
+    star: {
+      size: "medium",
+      satellites: 1,
+      orbitShape: "ellipse",
+      orbitDirection: "clockwise",
+      orbitDuration: 10,
+      orbitScaleX: 1.35,
+      orbitScaleY: 0.72,
+      glow: "violet",
+      tilt: 32,
     },
   },
-
   {
     id: "darling-glebe",
     title: "Darling Glebe",
     url: "https://darlingglebe.com.au/",
-    location: "Sydney, NSW",
+    location: "Sydney, New South Wales",
     category: "Client Website",
-
     summary:
-      "French brasserie website built around reservations, private dining and storytelling.",
-
-    industries: ["Hospitality"],
-
+      "A premium French brasserie website centred on atmosphere, storytelling and conversion. The experience supports reservations, menus, private dining and venue discovery while keeping the presentation polished and approachable.",
+    industries: ["Hospitality", "Restaurants", "Events"],
     capabilities: [
-      "CSS / LESS",
-      "JavaScript",
+      "CSS and LESS Styling",
+      "Custom JavaScript",
       "Figma Collaboration",
       "Technical SEO",
     ],
-
-    technologies: [
-      "Squarespace",
-      "LESS",
-      "JavaScript",
-    ],
-
-    featured: true,
-
+    technologies: ["Squarespace", "LESS", "JavaScript", "Figma", "CSS"],
+    featured: false,
     profile: {
-      frontend: 90,
-      seo: 80,
-      design: 80,
-      cms: 75,
-      backend: 10,
+      design: 9,
+      development: 7,
+      seo: 8,
+      accessibility: 7,
+      infrastructure: 4,
+      performance: 7,
+      cms: 8,
+      strategy: 8,
+    },
+    star: {
+      size: "medium",
+      satellites: 2,
+      orbitShape: "circle",
+      orbitDirection: "clockwise",
+      orbitDuration: 11,
+      orbitScaleX: 1,
+      orbitScaleY: 1,
+      glow: "warm",
+      tilt: 0,
+      secondaryOrbit: {
+        orbitDuration: 17,
+        orbitScaleX: 1.45,
+        orbitScaleY: 0.82,
+        orbitDirection: "counterclockwise",
+        tilt: 22,
+      },
     },
   },
-
   {
     id: "website-audit-dashboard",
     title: "Website Audit Dashboard",
     url: "https://website-audit-dashboard.onrender.com/",
     location: "Personal Project",
-    category: "Personal Project",
-
+    category: "Web Application",
     summary:
-      "A React-based website auditing platform for technical SEO analysis and reporting.",
-
-    industries: ["Developer Tools"],
-
+      "A React-based technical SEO auditing platform that analyses websites and surfaces practical issues across metadata, page structure, links and technical implementation. It demonstrates full-stack TypeScript development, server-side page analysis and structured reporting.",
+    industries: ["Developer Tools", "SEO", "Software"],
     capabilities: [
-      "React",
+      "React Development",
       "TypeScript",
-      "Node.js",
-      "Express.js",
-      "Cheerio",
+      "API Development",
+      "Technical SEO",
+      "Website Analysis",
+      "Data Presentation",
     ],
-
     technologies: [
       "React",
       "TypeScript",
-      "Express",
+      "Express.js",
       "Node.js",
       "Cheerio",
+      "Vite",
     ],
-
     featured: true,
-
     profile: {
-      frontend: 85,
-      seo: 90,
-      design: 40,
-      cms: 10,
-      backend: 90,
+      design: 7,
+      development: 10,
+      seo: 10,
+      accessibility: 7,
+      infrastructure: 8,
+      performance: 8,
+      cms: 2,
+      strategy: 9,
+    },
+    star: {
+      size: "large",
+      satellites: 2,
+      orbitShape: "circle",
+      orbitDirection: "clockwise",
+      orbitDuration: 5.5,
+      orbitScaleX: 1,
+      orbitScaleY: 1,
+      glow: "cyan",
+      tilt: 0,
+      secondaryOrbit: {
+        orbitDuration: 9,
+        orbitScaleX: 1.55,
+        orbitScaleY: 0.72,
+        orbitDirection: "counterclockwise",
+        tilt: -28,
+      },
     },
   },
 ];
