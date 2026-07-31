@@ -334,3 +334,254 @@
     animation: none;
   }
 }
+
+/* latest Node Animation */
+
+.project-system {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  overflow: visible;
+}
+
+.project-system__visual {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1px;
+  height: 1px;
+}
+
+.project-system__glow,
+.project-system__core,
+.project-system__orbits,
+.project-system__orbit {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  pointer-events: none;
+}
+
+.project-system__glow {
+  width: 38px;
+  height: 38px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  opacity: 0.55;
+  filter: blur(10px);
+  animation: project-system-breathe 4s ease-in-out infinite;
+  transition:
+    opacity 300ms ease,
+    transform 300ms ease;
+}
+
+.project-system:hover .project-system__glow,
+.project-system:focus-visible .project-system__glow,
+.project-system__glow--active {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.25);
+}
+
+.project-system__glow--small {
+  width: 28px;
+  height: 28px;
+}
+
+.project-system__glow--medium {
+  width: 40px;
+  height: 40px;
+}
+
+.project-system__glow--large {
+  width: 54px;
+  height: 54px;
+}
+
+.project-system__glow--warm {
+  background: rgba(255, 207, 145, 0.72);
+}
+
+.project-system__glow--cool {
+  background: rgba(210, 225, 255, 0.72);
+}
+
+.project-system__glow--blue {
+  background: rgba(125, 175, 255, 0.72);
+}
+
+.project-system__glow--cyan {
+  background: rgba(105, 232, 255, 0.75);
+}
+
+.project-system__glow--violet {
+  background: rgba(192, 145, 255, 0.72);
+}
+
+.project-system__glow--white {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.project-system__core {
+  z-index: 3;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: white;
+  box-shadow:
+    0 0 5px rgba(255, 255, 255, 0.95),
+    0 0 12px rgba(255, 255, 255, 0.55);
+  transition:
+    transform 250ms ease,
+    box-shadow 250ms ease;
+}
+
+.project-system__core--small {
+  width: 6px;
+  height: 6px;
+}
+
+.project-system__core--medium {
+  width: 9px;
+  height: 9px;
+}
+
+.project-system__core--large {
+  width: 12px;
+  height: 12px;
+}
+
+.project-system:hover .project-system__core,
+.project-system:focus-visible .project-system__core,
+.project-system__core--active {
+  transform: translate(-50%, -50%) scale(1.3);
+}
+
+.project-system__core--warm {
+  background: #fff0d5;
+}
+
+.project-system__core--cool {
+  background: #e7efff;
+}
+
+.project-system__core--blue {
+  background: #c8ddff;
+}
+
+.project-system__core--cyan {
+  background: #c8f8ff;
+}
+
+.project-system__core--violet {
+  background: #eadcff;
+}
+
+.project-system__core--white {
+  background: #ffffff;
+}
+
+.project-system__orbits {
+  z-index: 1;
+}
+
+.project-system__orbit {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 1px solid rgba(210, 225, 255, 0.16);
+  border-radius: 50%;
+  opacity: 0.45;
+  transition:
+    opacity 300ms ease,
+    border-color 300ms ease;
+}
+
+.project-system:hover .project-system__orbit,
+.project-system:focus-visible .project-system__orbit,
+.project-system__orbit--active {
+  opacity: 0.9;
+  border-color: rgba(230, 240, 255, 0.35);
+}
+
+.project-system__orbit-rotation {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  animation-name: project-system-orbit;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.project-system__satellite-position {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -50%);
+}
+
+.project-system__satellite {
+  display: block;
+  border-radius: 50%;
+  background: white;
+  box-shadow:
+    0 0 4px rgba(255, 255, 255, 0.9),
+    0 0 8px rgba(190, 220, 255, 0.65);
+}
+
+.project-system__label {
+  position: absolute;
+  left: 50%;
+  top: 18px;
+  width: max-content;
+  max-width: 170px;
+  transform: translateX(-50%);
+  opacity: 0.6;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.75rem;
+  line-height: 1.2;
+  text-align: center;
+  pointer-events: none;
+  transition:
+    opacity 250ms ease,
+    transform 250ms ease;
+}
+
+.project-system:hover .project-system__label,
+.project-system:focus-visible .project-system__label,
+.project-system__label--active {
+  opacity: 1;
+  transform: translateX(-50%) translateY(3px);
+}
+
+@keyframes project-system-orbit {
+  from {
+    rotate: 0deg;
+  }
+
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes project-system-breathe {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+
+  50% {
+    opacity: 0.75;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-system__glow,
+  .project-system__orbit-rotation {
+    animation: none;
+  }
+}

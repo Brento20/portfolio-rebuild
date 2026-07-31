@@ -3,7 +3,7 @@ import { projects } from "../../data/projects";
 import { projectLayout } from "../../data/layout";
 import type { Project } from "../../types/project";
 import { ProjectDrawer } from "../project/ProjectDrawer";
-import { Node } from "./Node";
+import { StarSystem } from "./StarSystem/StarSystem";
 import { Starfield } from "./Starfield";
 import { Nebula } from "./Nebula";
 
@@ -66,7 +66,7 @@ export function ExperienceMap() {
           }
 
           return (
-            <Node
+            <StarSystem
               key={project.id}
               project={project}
               x={position.x}

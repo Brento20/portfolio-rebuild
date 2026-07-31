@@ -1,17 +1,17 @@
-interface NodeLabelProps {
+interface LabelProps {
   title: string;
   isActive: boolean;
 }
 
-export function NodeLabel({
+export function Label({
   title,
   isActive,
-}: NodeLabelProps) {
+}: LabelProps) {
   return (
     <span
       className={[
-        "project-node__label",
-        isActive ? "project-node__label--active" : "",
+        "star-system__label",
+        isActive ? "star-system__label--active" : "",
       ]
         .filter(Boolean)
         .join(" ")}

@@ -30,14 +30,22 @@ export const projects: Project[] = [
     },
     star: {
       size: "medium",
-      satellites: 1,
-      orbitShape: "circle",
-      orbitDirection: "clockwise",
-      orbitDuration: 13,
-      orbitScaleX: 1,
-      orbitScaleY: 1,
       glow: "warm",
-      tilt: 0,
+      orbits: [
+        {
+          radius: 22,
+          ellipse: 1,
+          tilt: 0,
+          duration: 14,
+          direction: "clockwise",
+          satellites: [
+            {
+              size: 3,
+              angle: 0,
+            },
+          ],
+        },
+      ],
     },
   },
   {
@@ -69,14 +77,22 @@ export const projects: Project[] = [
     },
     star: {
       size: "large",
-      satellites: 1,
-      orbitShape: "ellipse",
-      orbitDirection: "clockwise",
-      orbitDuration: 7,
-      orbitScaleX: 1.45,
-      orbitScaleY: 0.82,
       glow: "warm",
-      tilt: -18,
+      orbits: [
+        {
+          radius: 25,
+          ellipse: 1.45,
+          tilt: -18,
+          duration: 7,
+          direction: "clockwise",
+          satellites: [
+            {
+              size: 4,
+              angle: 0,
+            },
+          ],
+        },
+      ],
     },
   },
   {
@@ -108,14 +124,22 @@ export const projects: Project[] = [
     },
     star: {
       size: "medium",
-      satellites: 1,
-      orbitShape: "ellipse",
-      orbitDirection: "counterclockwise",
-      orbitDuration: 12,
-      orbitScaleX: 1.7,
-      orbitScaleY: 0.85,
       glow: "warm",
-      tilt: 12,
+      orbits: [
+        {
+          radius: 27,
+          ellipse: 1.65,
+          tilt: 12,
+          duration: 12,
+          direction: "counterclockwise",
+          satellites: [
+            {
+              size: 3,
+              angle: 0,
+            },
+          ],
+        },
+      ],
     },
   },
   {
@@ -157,14 +181,22 @@ export const projects: Project[] = [
     },
     star: {
       size: "large",
-      satellites: 1,
-      orbitShape: "ellipse",
-      orbitDirection: "counterclockwise",
-      orbitDuration: 16,
-      orbitScaleX: 1.95,
-      orbitScaleY: 0.72,
       glow: "violet",
-      tilt: -10,
+      orbits: [
+        {
+          radius: 32,
+          ellipse: 1.9,
+          tilt: -10,
+          duration: 17,
+          direction: "counterclockwise",
+          satellites: [
+            {
+              size: 3,
+              angle: 0,
+            },
+          ],
+        },
+      ],
     },
   },
   {
@@ -196,14 +228,22 @@ export const projects: Project[] = [
     },
     star: {
       size: "medium",
-      satellites: 1,
-      orbitShape: "ellipse",
-      orbitDirection: "clockwise",
-      orbitDuration: 10,
-      orbitScaleX: 1.35,
-      orbitScaleY: 0.72,
       glow: "violet",
-      tilt: 32,
+      orbits: [
+        {
+          radius: 25,
+          ellipse: 1.35,
+          tilt: 32,
+          duration: 10,
+          direction: "clockwise",
+          satellites: [
+            {
+              size: 3,
+              angle: 0,
+            },
+          ],
+        },
+      ],
     },
   },
   {
@@ -235,21 +275,35 @@ export const projects: Project[] = [
     },
     star: {
       size: "medium",
-      satellites: 2,
-      orbitShape: "circle",
-      orbitDirection: "clockwise",
-      orbitDuration: 11,
-      orbitScaleX: 1,
-      orbitScaleY: 1,
       glow: "warm",
-      tilt: 0,
-      secondaryOrbit: {
-        orbitDuration: 17,
-        orbitScaleX: 1.45,
-        orbitScaleY: 0.82,
-        orbitDirection: "counterclockwise",
-        tilt: 22,
-      },
+      orbits: [
+        {
+          radius: 21,
+          ellipse: 1,
+          tilt: 0,
+          duration: 11,
+          direction: "clockwise",
+          satellites: [
+            {
+              size: 3,
+              angle: 0,
+            },
+          ],
+        },
+        {
+          radius: 31,
+          ellipse: 1.4,
+          tilt: 22,
+          duration: 17,
+          direction: "counterclockwise",
+          satellites: [
+            {
+              size: 2,
+              angle: 0,
+            },
+          ],
+        },
+      ],
     },
   },
   {
@@ -290,21 +344,39 @@ export const projects: Project[] = [
     },
     star: {
       size: "large",
-      satellites: 2,
-      orbitShape: "circle",
-      orbitDirection: "clockwise",
-      orbitDuration: 5.5,
-      orbitScaleX: 1,
-      orbitScaleY: 1,
       glow: "cyan",
-      tilt: 0,
-      secondaryOrbit: {
-        orbitDuration: 9,
-        orbitScaleX: 1.55,
-        orbitScaleY: 0.72,
-        orbitDirection: "counterclockwise",
-        tilt: -28,
-      },
+      orbits: [
+        {
+          radius: 20,
+          ellipse: 1,
+          tilt: 0,
+          duration: 5.5,
+          direction: "clockwise",
+          satellites: [
+            {
+              size: 3,
+              angle: 0,
+            },
+          ],
+        },
+        {
+          radius: 32,
+          ellipse: 1.5,
+          tilt: -28,
+          duration: 9,
+          direction: "counterclockwise",
+          satellites: [
+            {
+              size: 2,
+              angle: 0,
+            },
+            {
+              size: 2,
+              angle: 180,
+            },
+          ],
+        },
+      ],
     },
   },
 ];

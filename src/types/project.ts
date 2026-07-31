@@ -4,10 +4,6 @@ export type ProjectCategory =
   | "Ecommerce"
   | "Portfolio";
 
-export type OrbitShape = "circle" | "ellipse";
-
-export type OrbitDirection = "clockwise" | "counterclockwise";
-
 export type StarSize = "small" | "medium" | "large";
 
 export type StarGlow =
@@ -18,23 +14,26 @@ export type StarGlow =
   | "violet"
   | "white";
 
+export type OrbitDirection = "clockwise" | "counterclockwise";
+
+export interface SatelliteConfig {
+  size: number;
+  angle?: number;
+}
+
+export interface OrbitConfig {
+  radius: number;
+  ellipse: number;
+  tilt?: number;
+  duration: number;
+  direction: OrbitDirection;
+  satellites: SatelliteConfig[];
+}
+
 export interface ProjectStar {
   size: StarSize;
-  satellites: number;
-  orbitShape: OrbitShape;
-  orbitDirection: OrbitDirection;
-  orbitDuration: number;
-  orbitScaleX: number;
-  orbitScaleY: number;
   glow: StarGlow;
-  tilt?: number;
-  secondaryOrbit?: {
-    orbitDuration: number;
-    orbitScaleX: number;
-    orbitScaleY: number;
-    orbitDirection: OrbitDirection;
-    tilt?: number;
-  };
+  orbits: OrbitConfig[];
 }
 
 export interface ProjectProfile {
