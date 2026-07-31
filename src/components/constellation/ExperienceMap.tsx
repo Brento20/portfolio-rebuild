@@ -4,6 +4,7 @@ import { projectLayout } from "../../data/layout";
 import type { Project } from "../../types/project";
 import { ProjectDrawer } from "../project/ProjectDrawer";
 import { Node } from "./Node";
+import { Starfield } from "./Starfield";
 
 export function ExperienceMap() {
   const [selectedProject, setSelectedProject] =
@@ -17,9 +18,12 @@ export function ExperienceMap() {
           width: "100%",
           minHeight: "100vh",
           overflow: "hidden",
-          background: "#050505",
+          background:
+            "radial-gradient(circle at center, #111827 0%, #080b12 45%, #020203 100%)",
         }}
       >
+        <Starfield count={600} />
+
         <header
           style={{
             position: "absolute",

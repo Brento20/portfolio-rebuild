@@ -1,0 +1,52 @@
+.starfield {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.starfield__star {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  background: #ffffff;
+  animation-name: star-twinkle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity, filter;
+}
+
+.starfield__star--background {
+  box-shadow: none;
+}
+
+.starfield__star--middle {
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.35);
+}
+
+.starfield__star--hero {
+  box-shadow:
+    0 0 4px rgba(255, 255, 255, 0.9),
+    0 0 12px rgba(180, 210, 255, 0.45),
+    0 0 24px rgba(180, 210, 255, 0.2);
+}
+
+@keyframes star-twinkle {
+  0%,
+  100% {
+    transform: scale(0.85);
+    filter: brightness(0.75);
+  }
+
+  50% {
+    transform: scale(1.2);
+    filter: brightness(1.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .starfield__star {
+    animation: none;
+  }
+}

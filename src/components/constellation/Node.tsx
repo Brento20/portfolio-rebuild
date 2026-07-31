@@ -24,6 +24,7 @@ export function Node({
         position: "absolute",
         left: x,
         top: y,
+        zIndex: 2,
         transform: "translate(-50%, -50%)",
         display: "flex",
         alignItems: "center",
