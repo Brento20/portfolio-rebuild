@@ -17,7 +17,7 @@ export function Intro() {
       <div className="section__inner">
         <Approach>
           <SectionHead
-            eyebrow="About"
+            eyebrow="about"
             title={profile.introTitle}
             titleId="about-title"
           />
@@ -55,9 +55,19 @@ export function Intro() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
         >
-          {stats.map((stat) => (
+          {stats.map((stat, index) => (
             <li className="intro__orbit" key={stat.label}>
-              <span className="intro__orbit-ring" aria-hidden="true">
+              <span
+                className="intro__orbit-ring"
+                aria-hidden="true"
+                style={{ "--orbit-index": index } as React.CSSProperties}
+              >
+                <span className="intro__orbit-spin">
+                  <span className="intro__orbit-satellite" />
+                </span>
+                <span className="intro__orbit-spin intro__orbit-spin--counter">
+                  <span className="intro__orbit-satellite intro__orbit-satellite--small" />
+                </span>
                 <span className="intro__orbit-value">{stat.value}</span>
               </span>
               <span className="intro__orbit-label">{stat.label}</span>

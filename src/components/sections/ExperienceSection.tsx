@@ -11,7 +11,7 @@ export function ExperienceSection() {
       <ExperienceMap
         overlay={
           <SectionHead
-            eyebrow="Selected work"
+            eyebrow="selected work"
             title="A constellation of recent builds"
             titleId="experience-title"
             className="experience-section__head"

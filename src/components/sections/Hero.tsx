@@ -6,16 +6,16 @@ const enterEase = [0.22, 1, 0.36, 1] as const;
 
 const stagger = {
   animate: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.15 },
+    transition: { staggerChildren: 0.14, delayChildren: 0.2 },
   },
 };
 
 const rise = {
-  initial: { opacity: 0, y: 26 },
+  initial: { opacity: 0, y: 30 },
   animate: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.9, ease: enterEase },
+    transition: { duration: 1, ease: enterEase },
   },
 };
 
@@ -28,9 +28,9 @@ export function Hero() {
     offset: ["start start", "end start"],
   });
 
-  const copyY = useTransform(scrollYProgress, [0, 1], [0, 90]);
-  const copyOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
-  const ringsY = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const copyY = useTransform(scrollYProgress, [0, 1], [0, 110]);
+  const copyOpacity = useTransform(scrollYProgress, [0, 0.65], [1, 0]);
+  const ringsY = useTransform(scrollYProgress, [0, 1], [0, 170]);
 
   return (
     <section
@@ -51,31 +51,44 @@ export function Hero() {
       </motion.div>
 
       <motion.div
-        className="hero__inner"
+        className="hero__frame"
         style={reduceMotion ? undefined : { y: copyY, opacity: copyOpacity }}
         variants={reduceMotion ? undefined : stagger}
         initial={reduceMotion ? false : "initial"}
         animate={reduceMotion ? undefined : "animate"}
       >
-        <motion.p className="hero__eyebrow" variants={rise}>
-          {profile.location} · {profile.role}
-        </motion.p>
+        <motion.header className="hero__meta" variants={rise}>
+          <span className="hero__meta-item">33.8688°S&thinsp;/&thinsp;151.2093°E</span>
+          <span className="hero__meta-item hero__meta-item--wide">
+            {profile.role} — {profile.roleDetail}
+          </span>
+          <span className="hero__meta-item hero__meta-status">
+            <span className="hero__meta-pulse" aria-hidden="true" />
+            Open to opportunities
+          </span>
+        </motion.header>
 
         <motion.h1 className="hero__title" id="hero-title" variants={rise}>
-          {profile.name}
+          <span className="hero__title-line">Brenton</span>
+          <span className="hero__title-line hero__title-line--offset">
+            <em>Weaver</em>
+          </span>
         </motion.h1>
 
-        <motion.p className="hero__lead" variants={rise}>
-          {profile.tagline}
-        </motion.p>
+        <motion.div className="hero__foot" variants={rise}>
+          <p className="hero__lead">{profile.tagline}</p>
 
-        <motion.div className="hero__actions" variants={rise}>
-          <a className="btn btn--primary" href="#experience">
-            Explore the constellation
-          </a>
-          <a className="btn btn--ghost" href="#contact">
-            Get in touch
-          </a>
+          <div className="hero__actions">
+            <a className="btn btn--solid" href="#experience">
+              Explore the work
+            </a>
+            <a className="btn btn--line" href="#contact">
+              Get in touch
+              <span className="btn__arrow" aria-hidden="true">
+                →
+              </span>
+            </a>
+          </div>
         </motion.div>
       </motion.div>
 
@@ -85,7 +98,7 @@ export function Hero() {
         aria-label="Scroll to about section"
         initial={reduceMotion ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.4, duration: 1 }}
+        transition={{ delay: 1.6, duration: 1 }}
       >
         <span className="hero__scroll-line" aria-hidden="true" />
       </motion.a>
