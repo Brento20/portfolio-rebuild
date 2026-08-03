@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from "framer-motion";
+import { CelestialVeil } from "../celestial/CelestialVeil";
 import { profile } from "../../data/profile";
 import { SectionHead } from "../layout/SectionHead";
 
@@ -15,6 +16,7 @@ export function Intro() {
 
   return (
     <section className="section intro" id="about" aria-labelledby="about-title">
+      <CelestialVeil variant="dawn" starCount={60} />
       <div className="section__inner">
         <motion.div
           className="intro__layout"

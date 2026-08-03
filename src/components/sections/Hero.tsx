@@ -1,32 +1,48 @@
 import { motion, useReducedMotion } from "framer-motion";
+import { CelestialVeil } from "../celestial/CelestialVeil";
+import { ShootingStars } from "../celestial/ShootingStars";
 import { profile } from "../../data/profile";
 import { HeroOrbit } from "./HeroOrbit";
 
 const enterEase = [0.22, 1, 0.36, 1] as const;
 
+const stagger = {
+  animate: {
+    transition: { staggerChildren: 0.09, delayChildren: 0.05 },
+  },
+};
+
+const item = {
+  initial: { opacity: 0, y: 22 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.65, ease: enterEase },
+  },
+};
+
 export function Hero() {
   const reduceMotion = useReducedMotion();
 
-  const fade = reduceMotion
-    ? {}
-    : {
-        initial: { opacity: 0, y: 20 },
-        animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.6, ease: enterEase },
-      };
-
   return (
     <section className="hero" id="top" aria-labelledby="hero-title">
+      <CelestialVeil variant="dawn" starCount={90} />
+      <ShootingStars count={3} className="shooting-stars--subtle" />
       <div className="hero__backdrop" aria-hidden="true" />
       <div className="hero__inner">
-        <div className="hero__grid">
+        <motion.div
+          className="hero__grid"
+          variants={reduceMotion ? undefined : stagger}
+          initial={reduceMotion ? false : "initial"}
+          animate={reduceMotion ? undefined : "animate"}
+        >
           <div className="hero__copy">
-            <motion.p className="hero__eyebrow" {...fade}>
+            <motion.p className="hero__eyebrow" variants={item}>
               <span className="hero__eyebrow-dot" aria-hidden="true" />
               {profile.location}
             </motion.p>
 
-            <motion.h1 className="hero__title" id="hero-title" {...fade}>
+            <motion.h1 className="hero__title" id="hero-title" variants={item}>
               {profile.name.split(" ").map((part, index) => (
                 <span key={part} className="hero__title-part">
                   {part}
@@ -35,7 +51,7 @@ export function Hero() {
               ))}
             </motion.h1>
 
-            <motion.p className="hero__role" {...fade}>
+            <motion.p className="hero__role" variants={item}>
               <span>{profile.role}</span>
               <span className="hero__role-sep" aria-hidden="true">
                 /
@@ -43,17 +59,17 @@ export function Hero() {
               <span className="hero__role-detail">{profile.roleDetail}</span>
             </motion.p>
 
-            <motion.p className="hero__tagline" {...fade}>
+            <motion.p className="hero__tagline" variants={item}>
               {profile.tagline}
             </motion.p>
 
-            <motion.p className="hero__lead" {...fade}>
+            <motion.p className="hero__lead" variants={item}>
               {profile.heroLead}
             </motion.p>
 
-            <motion.div className="hero__actions" {...fade}>
+            <motion.div className="hero__actions" variants={item}>
               <a className="btn btn--primary" href="#experience">
-                View selected work
+                Enter the map
                 <span className="btn__arrow" aria-hidden="true">
                   →
                 </span>
@@ -64,15 +80,10 @@ export function Hero() {
             </motion.div>
           </div>
 
-          <motion.div
-            className="hero__visual"
-            initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.75, ease: enterEase, delay: 0.12 }}
-          >
+          <motion.div className="hero__visual" variants={item}>
             <HeroOrbit />
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

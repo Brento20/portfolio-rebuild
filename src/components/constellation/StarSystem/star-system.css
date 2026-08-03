@@ -342,7 +342,7 @@
 .star-system--active .star-system__label,
 .star-system__label--active {
   color: rgb(255 255 255 / 88%);
-  transform: translateX(-50%) translateY(3px);
+  transform: translate(-50%, calc(1.65rem + 3px));
 }
 
 .star-system__label--dimmed {

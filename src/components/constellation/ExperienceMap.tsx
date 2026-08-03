@@ -1,120 +1,132 @@
+import type { ReactNode, RefObject } from "react";
 import { useEffect, useRef, useState } from "react";
+import {
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import { projects } from "../../data/projects";
 import { projectLayout } from "../../data/layout";
 import type { Project } from "../../types/project";
+import { ShootingStars } from "../celestial/ShootingStars";
 import { ProjectDrawer } from "../project/ProjectDrawer";
 import { StarSystem } from "./StarSystem/StarSystem";
 import { Label } from "./StarSystem/Label";
 import { Starfield } from "./Starfield";
 import { Nebula } from "./Nebula";
 
-export function ExperienceMap() {
+interface ExperienceMapProps {
+  overlay?: ReactNode;
+  scrollRootRef?: RefObject<HTMLElement | null>;
+}
+
+export function ExperienceMap({ overlay, scrollRootRef }: ExperienceMapProps) {
   const [selectedProject, setSelectedProject] =
     useState<Project | null>(null);
 
+  const internalRef = useRef<HTMLElement>(null);
+  const scrollTarget = scrollRootRef ?? internalRef;
   const nebulaRef = useRef<HTMLDivElement>(null);
   const backgroundRef = useRef<HTMLDivElement>(null);
   const starsRef = useRef<HTMLDivElement>(null);
   const labelsRef = useRef<HTMLDivElement>(null);
-  const stageRef = useRef<HTMLDivElement>(null);
-  const viewportRef = useRef<HTMLDivElement>(null);
+  const galaxyRef = useRef<HTMLDivElement>(null);
 
-  const designWidth = 960;
-  const designHeight = 680;
+  const reduceMotion = useReducedMotion();
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const smoothX = useSpring(pointerX, { stiffness: 40, damping: 18 });
+  const smoothY = useSpring(pointerY, { stiffness: 40, damping: 18 });
 
-  useEffect(() => {
-    const updateScale = () => {
-      const stage = stageRef.current;
-      const viewport = viewportRef.current;
-      if (!stage || !viewport) return;
+  const { scrollYProgress } = useScroll({
+    target: scrollTarget,
+    offset: ["start end", "end start"],
+  });
 
-      const available = viewport.clientWidth - 32;
-      const scale = Math.min(1, available / designWidth);
-      stage.style.setProperty("--experience-map-scale", String(scale));
-      viewport.style.minHeight = `${designHeight * scale}px`;
-    };
-
-    updateScale();
-    window.addEventListener("resize", updateScale);
-    return () => window.removeEventListener("resize", updateScale);
-  }, []);
+  const scrollDriftY = useTransform(scrollYProgress, [0, 1], [80, -80]);
+  const scrollScale = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    [1.06, 1, 1.04],
+  );
+  const overlayY = useTransform(scrollYProgress, [0, 1], [28, -32]);
 
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
+    if (reduceMotion) return;
 
-    if (prefersReducedMotion) {
-      return;
-    }
-
-    let mouseX = 0;
-    let mouseY = 0;
-    let currentX = 0;
-    let currentY = 0;
-
-    const handleMove = (event: MouseEvent) => {
-      mouseX = (event.clientX / window.innerWidth - 0.5) * 2;
-      mouseY = (event.clientY / window.innerHeight - 0.5) * 2;
+    const handleMove = (event: PointerEvent) => {
+      pointerX.set((event.clientX / window.innerWidth - 0.5) * 2);
+      pointerY.set((event.clientY / window.innerHeight - 0.5) * 2);
     };
 
-    window.addEventListener("mousemove", handleMove);
+    window.addEventListener("pointermove", handleMove);
+    return () => window.removeEventListener("pointermove", handleMove);
+  }, [pointerX, pointerY, reduceMotion]);
+
+  useEffect(() => {
+    if (reduceMotion) return;
 
     let frame = 0;
 
     const animate = () => {
-      currentX += (mouseX - currentX) * 0.06;
-      currentY += (mouseY - currentY) * 0.06;
+      const x = smoothX.get();
+      const y = smoothY.get();
 
       const move = (el: HTMLDivElement | null, amount: number) => {
         if (!el) return;
-        el.style.transform = `translate3d(${currentX * amount}px, ${currentY * amount}px, 0)`;
+        el.style.transform = `translate3d(${x * amount}px, ${y * amount}px, 0)`;
       };
 
-      move(nebulaRef.current, 1.5);
-      move(backgroundRef.current, 3);
-      move(starsRef.current, 7);
-      move(labelsRef.current, 11);
+      move(nebulaRef.current, 14);
+      move(galaxyRef.current, 8);
+      move(backgroundRef.current, 22);
+      move(starsRef.current, 38);
+      move(labelsRef.current, 48);
 
       frame = requestAnimationFrame(animate);
     };
 
     animate();
-
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("mousemove", handleMove);
-    };
-  }, []);
+    return () => cancelAnimationFrame(frame);
+  }, [reduceMotion, smoothX, smoothY]);
 
   const hasSelection = selectedProject !== null;
 
   return (
     <>
-      <div className="experience-map">
-        <div className="experience-map__viewport" ref={viewportRef}>
+      <div className="experience-map experience-map--immersive">
+        <motion.div
+          className="experience-map__viewport"
+          style={
+            reduceMotion
+              ? undefined
+              : {
+                  scale: scrollScale,
+                }
+          }
+        >
           <div className="experience-map__canvas">
-            <div
-              className="experience-map__stage"
-              ref={stageRef}
-              style={{ width: designWidth, height: designHeight }}
-            >
-              <div className="experience-map__overlay-header">
-                <p>Scroll the page to continue after exploring</p>
-              </div>
+            <motion.div
+              className="experience-map__galaxy"
+              ref={galaxyRef}
+              style={reduceMotion ? undefined : { y: scrollDriftY }}
+              aria-hidden="true"
+            />
 
-              <div ref={nebulaRef} style={{ position: "absolute", inset: 0 }}>
-                <Nebula />
-              </div>
+            <div ref={nebulaRef} className="experience-map__layer">
+              <Nebula />
+            </div>
 
-              <div
-                ref={backgroundRef}
-                style={{ position: "absolute", inset: 0 }}
-              >
-                <Starfield count={750} />
-              </div>
+            <div ref={backgroundRef} className="experience-map__layer">
+              <Starfield count={1400} />
+            </div>
 
-              <div ref={starsRef} style={{ position: "absolute", inset: 0 }}>
+            <ShootingStars count={8} />
+
+            <div ref={starsRef} className="experience-map__layer experience-map__layer--systems">
               {projects.map((project) => {
                 const position = projectLayout[project.id];
                 if (!position) return null;
@@ -127,6 +139,7 @@ export function ExperienceMap() {
                     project={project}
                     x={position.x}
                     y={position.y}
+                    usePercent
                     isActive={isActive}
                     isDimmed={hasSelection && !isActive}
                     onClick={() =>
@@ -137,16 +150,12 @@ export function ExperienceMap() {
                   />
                 );
               })}
-              </div>
+            </div>
 
-              <div
-                ref={labelsRef}
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  pointerEvents: "none",
-                }}
-              >
+            <div
+              ref={labelsRef}
+              className="experience-map__layer experience-map__layer--labels"
+            >
               {projects.map((project) => {
                 const position = projectLayout[project.id];
                 if (!position) return null;
@@ -156,16 +165,41 @@ export function ExperienceMap() {
                     key={project.id}
                     title={project.title}
                     isActive={selectedProject?.id === project.id}
-                    isDimmed={hasSelection && selectedProject?.id !== project.id}
+                    isDimmed={
+                      hasSelection && selectedProject?.id !== project.id
+                    }
                     x={position.x}
                     y={position.y}
+                    usePercent
                   />
                 );
               })}
-              </div>
             </div>
+
+            {overlay ? (
+              <motion.div
+                className="experience-map__overlay"
+                style={reduceMotion ? undefined : { y: overlayY }}
+              >
+                {overlay}
+              </motion.div>
+            ) : null}
+
+            <motion.a
+              className="experience-map__scroll-hint"
+              href="#contact"
+              initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+            >
+              <span>Continue to contact</span>
+              <span className="experience-map__scroll-hint-icon" aria-hidden="true">
+                ↓
+              </span>
+            </motion.a>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       <ProjectDrawer

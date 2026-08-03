@@ -1,0 +1,429 @@
+/* —— Celestial layers (hero / intro) —— */
+
+.celestial-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.celestial-veil--dawn {
+  opacity: 0.85;
+}
+
+.celestial-veil--dawn .starfield__star {
+  background: rgb(169 116 68 / 85%);
+  box-shadow: 0 0 6px rgb(169 116 68 / 25%);
+}
+
+.celestial-veil--dawn .starfield__star--hero {
+  background: rgb(120 90 70 / 90%);
+  box-shadow: 0 0 10px rgb(169 116 68 / 35%);
+}
+
+.celestial-veil__aurora {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.35;
+  animation: aurora-drift 22s ease-in-out infinite alternate;
+}
+
+.celestial-veil__aurora--one {
+  width: 55%;
+  height: 45%;
+  top: -10%;
+  right: -8%;
+  background: rgb(220 180 140 / 55%);
+}
+
+.celestial-veil__aurora--two {
+  width: 48%;
+  height: 40%;
+  bottom: -15%;
+  left: -10%;
+  background: rgb(190 160 130 / 45%);
+  animation-duration: 28s;
+  animation-delay: -6s;
+}
+
+@keyframes aurora-drift {
+  from {
+    transform: translate3d(-2%, 0, 0) scale(1);
+  }
+
+  to {
+    transform: translate3d(3%, 4%, 0) scale(1.08);
+  }
+}
+
+/* —— Shooting stars —— */
+
+.shooting-stars {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.shooting-stars--subtle .shooting-stars__trail {
+  opacity: 0.35;
+}
+
+.shooting-stars__trail {
+  position: absolute;
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(255 255 255 / 95%),
+    transparent
+  );
+  border-radius: 999px;
+  opacity: 0.65;
+  transform: rotate(-35deg);
+  animation-name: shooting-star-fly;
+  animation-timing-function: ease-in;
+  animation-iteration-count: infinite;
+}
+
+@keyframes shooting-star-fly {
+  0% {
+    opacity: 0;
+    translate: -120% 0;
+  }
+
+  8% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    translate: 280% 120%;
+  }
+}
+
+/* —— Cosmic horizon (intro → space) —— */
+
+.cosmic-horizon {
+  position: relative;
+  z-index: 2;
+  height: clamp(5rem, 14vw, 9rem);
+  margin-top: -1px;
+  background: linear-gradient(
+    180deg,
+    var(--color-paper) 0%,
+    #1a1714 55%,
+    var(--color-space-900) 100%
+  );
+  overflow: hidden;
+}
+
+.cosmic-horizon__glow {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: min(90%, 56rem);
+  height: 120%;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    ellipse at 50% 100%,
+    rgb(201 160 120 / 35%) 0%,
+    rgb(169 116 68 / 12%) 35%,
+    transparent 68%
+  );
+  transform-origin: bottom center;
+}
+
+.cosmic-horizon__band {
+  position: absolute;
+  inset: auto 0 28%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(255 255 255 / 35%),
+    transparent
+  );
+}
+
+.cosmic-horizon__star {
+  position: absolute;
+  bottom: 26%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 10px rgb(255 255 255 / 65%);
+  animation: horizon-star-pulse 3.5s ease-in-out infinite;
+}
+
+.cosmic-horizon__star--a {
+  left: 18%;
+  animation-delay: 0s;
+}
+
+.cosmic-horizon__star--b {
+  left: 42%;
+  animation-delay: 0.7s;
+}
+
+.cosmic-horizon__star--c {
+  left: 68%;
+  animation-delay: 1.2s;
+}
+
+.cosmic-horizon__star--d {
+  left: 86%;
+  animation-delay: 0.35s;
+}
+
+@keyframes horizon-star-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    scale: 0.85;
+  }
+
+  50% {
+    opacity: 1;
+    scale: 1.25;
+  }
+}
+
+/* —— Immersive experience map —— */
+
+.experience-section--immersive {
+  padding: 0;
+  margin: 0;
+  background: var(--color-space-900);
+}
+
+.experience-map--immersive {
+  width: 100%;
+}
+
+.experience-map__viewport {
+  width: 100%;
+  height: 100svh;
+  min-height: 32rem;
+  overflow: hidden;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.experience-map__canvas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: radial-gradient(
+    ellipse 120% 90% at 50% 42%,
+    #3a322c 0%,
+    var(--color-space-800) 38%,
+    var(--color-space-900) 100%
+  );
+}
+
+.experience-map__galaxy {
+  position: absolute;
+  inset: -20%;
+  z-index: 0;
+  background:
+    conic-gradient(
+      from 210deg at 50% 50%,
+      transparent 0deg,
+      rgb(169 116 68 / 8%) 55deg,
+      transparent 110deg,
+      rgb(130 100 180 / 6%) 200deg,
+      transparent 280deg
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      rgb(255 255 255 / 4%) 0%,
+      transparent 42%
+    );
+  opacity: 0.9;
+  animation: galaxy-rotate 120s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes galaxy-rotate {
+  from {
+    rotate: 0deg;
+  }
+
+  to {
+    rotate: 360deg;
+  }
+}
+
+.experience-map__layer {
+  position: absolute;
+  inset: 0;
+}
+
+.experience-map__layer--systems {
+  z-index: 4;
+}
+
+.experience-map__layer--labels {
+  z-index: 5;
+  pointer-events: none;
+}
+
+.experience-map__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  display: flex;
+  align-items: flex-start;
+  padding: calc(var(--header-height) + 1.25rem) var(--space-gutter) 2rem;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgb(18 16 14 / 72%) 0%,
+    rgb(18 16 14 / 28%) 38%,
+    transparent 62%
+  );
+}
+
+.experience-section__head {
+  width: min(var(--max-content), 100%);
+  margin-inline: auto;
+  pointer-events: none;
+}
+
+.experience-section__head .section-head__title {
+  max-width: 22ch;
+}
+
+.experience-map__scroll-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 1.35rem;
+  z-index: 9;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: var(--radius-pill);
+  background: rgb(20 18 16 / 55%);
+  backdrop-filter: blur(10px);
+  color: rgb(255 255 255 / 72%);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  translate: -50% 0;
+  animation: scroll-hint-bob 2.8s ease-in-out infinite;
+}
+
+.experience-map__scroll-hint-icon {
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+@keyframes scroll-hint-bob {
+  0%,
+  100% {
+    translate: -50% 0;
+  }
+
+  50% {
+    translate: -50% 5px;
+  }
+}
+
+.experience-map__scroll-hint {
+  transform: none;
+}
+
+/* Header in deep space */
+
+.site-header--cosmos {
+  color: rgb(255 255 255 / 92%);
+}
+
+.site-header--cosmos.site-header--solid {
+  background: rgb(18 16 14 / 78%);
+  border-color: rgb(255 255 255 / 10%);
+}
+
+.site-header--cosmos .site-header__brand,
+.site-header--cosmos .site-header__brand-text {
+  color: rgb(255 255 255 / 94%);
+}
+
+.site-header--cosmos .site-header__brand-text span,
+.site-header--cosmos .site-nav a {
+  color: rgb(255 255 255 / 58%);
+}
+
+.site-header--cosmos .site-nav a:hover {
+  color: rgb(255 255 255 / 92%);
+  background: rgb(255 255 255 / 8%);
+}
+
+.site-header--cosmos .site-header__monogram {
+  border-color: rgb(255 255 255 / 18%);
+  background: rgb(255 255 255 / 6%);
+  color: rgb(255 255 255 / 85%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .celestial-veil__aurora,
+  .shooting-stars__trail,
+  .experience-map__galaxy,
+  .experience-map__scroll-hint,
+  .cosmic-horizon__star {
+    animation: none;
+  }
+}
+
+/* —— Return to daylight (contact) —— */
+
+.cosmic-dawn {
+  position: relative;
+  z-index: 1;
+  height: clamp(4rem, 10vw, 6rem);
+  margin-top: -1px;
+  background: linear-gradient(
+    180deg,
+    var(--color-space-900) 0%,
+    #2a2420 35%,
+    var(--color-cream-deep) 100%
+  );
+  overflow: hidden;
+}
+
+.cosmic-dawn__glow {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: min(100%, 48rem);
+  height: 140%;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    rgb(255 220 180 / 28%) 0%,
+    transparent 62%
+  );
+  animation: dawn-breathe 8s ease-in-out infinite alternate;
+}
+
+@keyframes dawn-breathe {
+  from {
+    opacity: 0.65;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
