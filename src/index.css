@@ -21,7 +21,7 @@
   height: 620px;
   top: -180px;
   left: -120px;
-  background: rgba(126, 87, 194, 0.65);
+  background: rgba(184, 135, 90, 0.42);
 }
 
 .nebula__cloud--two {
@@ -29,7 +29,7 @@
   height: 700px;
   right: -240px;
   top: 8%;
-  background: rgba(50, 130, 210, 0.55);
+  background: rgba(160, 118, 88, 0.38);
   animation-duration: 30s;
   animation-delay: -8s;
 }
@@ -39,7 +39,7 @@
   height: 560px;
   left: 28%;
   bottom: -250px;
-  background: rgba(180, 80, 145, 0.45);
+  background: rgba(120, 92, 72, 0.35);
   animation-duration: 34s;
   animation-delay: -14s;
 }

@@ -8,6 +8,7 @@ interface StarSystemProps {
   x: number;
   y: number;
   isActive: boolean;
+  isDimmed?: boolean;
   onClick: () => void;
 }
 
@@ -16,6 +17,7 @@ export function StarSystem({
   x,
   y,
   isActive,
+  isDimmed = false,
   onClick,
 }: StarSystemProps) {
   const isFeatured = project.featured;
@@ -26,6 +28,7 @@ export function StarSystem({
       className={[
         "star-system",
         isActive ? "star-system--active" : "",
+        isDimmed ? "star-system--dimmed" : "",
         isFeatured ? "star-system--featured" : "",
       ]
         .filter(Boolean)

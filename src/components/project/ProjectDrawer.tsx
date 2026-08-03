@@ -1,124 +1,97 @@
+import { useEffect } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import type { Project } from "../../types/project";
+
+const drawerEase = [0.22, 1, 0.36, 1] as const;
 
 interface ProjectDrawerProps {
   project: Project | null;
   onClose: () => void;
 }
 
-export function ProjectDrawer({
-  project,
-  onClose,
-}: ProjectDrawerProps) {
-  if (!project) {
-    return null;
-  }
+export function ProjectDrawer({ project, onClose }: ProjectDrawerProps) {
+  const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (!project) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [project, onClose]);
 
   return (
-    <aside
-      aria-label={`${project.title} project details`}
-      style={{
-        position: "fixed",
-        left: 0,
-        right: 0,
-        bottom: 0,
-        zIndex: 20,
-        padding: "32px",
-        borderTop: "1px solid rgba(255, 255, 255, 0.16)",
-        background: "rgba(10, 10, 10, 0.96)",
-        backdropFilter: "blur(18px)",
-        color: "#ffffff",
-      }}
-    >
-      <button
-        type="button"
-        onClick={onClose}
-        aria-label="Close project details"
-        style={{
-          position: "absolute",
-          top: "20px",
-          right: "24px",
-          border: 0,
-          background: "transparent",
-          color: "#ffffff",
-          fontSize: "24px",
-          cursor: "pointer",
-        }}
-      >
-        ×
-      </button>
+    <AnimatePresence>
+      {project ? (
+        <>
+          <motion.button
+            type="button"
+            className="project-drawer-backdrop"
+            aria-label="Close project details"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: reduceMotion ? 0 : 0.22 }}
+            onClick={onClose}
+          />
 
-      <p
-        style={{
-          margin: "0 0 8px",
-          fontSize: "12px",
-          letterSpacing: "0.12em",
-          textTransform: "uppercase",
-          opacity: 0.55,
-        }}
-      >
-        {project.location}
-      </p>
-
-      <h2
-        style={{
-          margin: "0 0 16px",
-          fontSize: "36px",
-          lineHeight: 1.1,
-        }}
-      >
-        {project.title}
-      </h2>
-
-      <p
-        style={{
-          maxWidth: "720px",
-          margin: "0 0 24px",
-          lineHeight: 1.6,
-          opacity: 0.8,
-        }}
-      >
-        {project.summary}
-      </p>
-
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "8px",
-          marginBottom: "24px",
-        }}
-      >
-        {project.capabilities.map((capability) => (
-          <span
-            key={capability}
-            style={{
-              padding: "8px 12px",
-              border: "1px solid rgba(255, 255, 255, 0.18)",
-              borderRadius: "999px",
-              fontSize: "13px",
-            }}
+          <motion.aside
+            className="project-drawer"
+            aria-label={`${project.title} project details`}
+            role="dialog"
+            aria-modal="true"
+            initial={reduceMotion ? false : { y: "100%" }}
+            animate={{ y: 0 }}
+            exit={reduceMotion ? undefined : { y: "100%" }}
+            transition={{ duration: 0.38, ease: drawerEase }}
           >
-            {capability}
-          </span>
-        ))}
-      </div>
+            <button
+              type="button"
+              className="project-drawer__close"
+              onClick={onClose}
+              aria-label="Close project details"
+            >
+              ×
+            </button>
 
-      <a
-        href={project.url}
-        target="_blank"
-        rel="noreferrer"
-        style={{
-          display: "inline-flex",
-          padding: "12px 18px",
-          borderRadius: "999px",
-          background: "#ffffff",
-          color: "#050505",
-          fontWeight: 700,
-          textDecoration: "none",
-        }}
-      >
-        Visit live site
-      </a>
-    </aside>
+            <p className="project-drawer__meta">
+              {project.category} · {project.location}
+            </p>
+
+            <h2 className="project-drawer__title">{project.title}</h2>
+
+            <p className="project-drawer__summary">{project.summary}</p>
+
+            <div className="project-drawer__tags">
+              {project.capabilities.map((capability) => (
+                <span className="project-drawer__tag" key={capability}>
+                  {capability}
+                </span>
+              ))}
+            </div>
+
+            <a
+              className="project-drawer__link"
+              href={project.url}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Visit live site
+            </a>
+          </motion.aside>
+        </>
+      ) : null}
+    </AnimatePresence>
   );
 }
