@@ -345,6 +345,10 @@
   transform: translateX(-50%) translateY(3px);
 }
 
+.star-system__label--dimmed {
+  opacity: 0.35;
+}
+
 /* Featured project */
 
 .star-system--featured .star-system__label {

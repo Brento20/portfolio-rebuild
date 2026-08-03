@@ -5,6 +5,7 @@ interface LabelProps {
   x: number;
   y: number;
   isActive: boolean;
+  isDimmed?: boolean;
 }
 
 export function Label({
@@ -12,12 +13,14 @@ export function Label({
   x,
   y,
   isActive,
+  isDimmed = false,
 }: LabelProps) {
   return (
     <span
       className={[
         "star-system__label",
         isActive ? "star-system__label--active" : "",
+        isDimmed ? "star-system__label--dimmed" : "",
       ]
         .filter(Boolean)
         .join(" ")}
