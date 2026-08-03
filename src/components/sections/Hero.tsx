@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from "framer-motion";
+import { ParallaxLayer } from "../celestial/ParallaxLayer";
 import { CelestialVeil } from "../celestial/CelestialVeil";
 import { ShootingStars } from "../celestial/ShootingStars";
 import { profile } from "../../data/profile";
@@ -26,8 +27,10 @@ export function Hero() {
 
   return (
     <section className="hero" id="top" aria-labelledby="hero-title">
-      <CelestialVeil variant="dawn" starCount={90} />
-      <ShootingStars count={3} className="shooting-stars--subtle" />
+      <ParallaxLayer depth={8} className="hero__veil-wrap">
+        <CelestialVeil variant="deep" starCount={140} />
+      </ParallaxLayer>
+      <ShootingStars count={4} className="shooting-stars--subtle" />
       <div className="hero__backdrop" aria-hidden="true" />
       <div className="hero__inner">
         <motion.div
@@ -36,7 +39,7 @@ export function Hero() {
           initial={reduceMotion ? false : "initial"}
           animate={reduceMotion ? undefined : "animate"}
         >
-          <div className="hero__copy">
+          <ParallaxLayer depth={16} className="hero__copy">
             <motion.p className="hero__eyebrow" variants={item}>
               <span className="hero__eyebrow-dot" aria-hidden="true" />
               {profile.location}
@@ -78,11 +81,13 @@ export function Hero() {
                 Get in touch
               </a>
             </motion.div>
-          </div>
+          </ParallaxLayer>
 
-          <motion.div className="hero__visual" variants={item}>
-            <HeroOrbit />
-          </motion.div>
+          <ParallaxLayer depth={28} className="hero__visual">
+            <motion.div variants={item}>
+              <HeroOrbit />
+            </motion.div>
+          </ParallaxLayer>
         </motion.div>
       </div>
     </section>

@@ -8,18 +8,59 @@
   pointer-events: none;
 }
 
-.celestial-veil--dawn {
-  opacity: 0.85;
+.celestial-veil--deep {
+  opacity: 1;
 }
 
-.celestial-veil--dawn .starfield__star {
-  background: rgb(169 116 68 / 85%);
-  box-shadow: 0 0 6px rgb(169 116 68 / 25%);
+.celestial-veil--deep .starfield__star {
+  background: rgb(255 255 255 / 75%);
 }
 
-.celestial-veil--dawn .starfield__star--hero {
-  background: rgb(120 90 70 / 90%);
-  box-shadow: 0 0 10px rgb(169 116 68 / 35%);
+.celestial-veil--deep .starfield__star--middle {
+  box-shadow: 0 0 5px rgb(212 165 116 / 35%);
+}
+
+.celestial-veil--deep .starfield__star--hero {
+  background: #fff;
+  box-shadow:
+    0 0 6px rgb(255 255 255 / 90%),
+    0 0 14px rgb(212 165 116 / 45%);
+}
+
+.celestial-veil--deep .celestial-veil__aurora--one {
+  background: rgb(169 116 68 / 22%);
+}
+
+.celestial-veil--deep .celestial-veil__aurora--two {
+  background: rgb(120 90 180 / 14%);
+}
+
+.hero__veil-wrap,
+.intro__veil-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Cursor follow glow */
+
+.cursor-glow {
+  position: fixed;
+  z-index: 9998;
+  width: 28rem;
+  height: 28rem;
+  margin: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  translate: -50% -50%;
+  background: radial-gradient(
+    circle,
+    rgb(212 165 116 / 14%) 0%,
+    rgb(140 100 200 / 6%) 35%,
+    transparent 68%
+  );
+  mix-blend-mode: screen;
 }
 
 .celestial-veil__aurora {
@@ -115,8 +156,8 @@
   margin-top: -1px;
   background: linear-gradient(
     180deg,
-    var(--color-paper) 0%,
-    #1a1714 55%,
+    var(--color-bg-soft) 0%,
+    var(--color-bg-raised) 45%,
     var(--color-space-900) 100%
   );
   overflow: hidden;
@@ -211,8 +252,6 @@
   height: 100svh;
   min-height: 32rem;
   overflow: hidden;
-  transform-origin: center center;
-  will-change: transform;
 }
 
 .experience-map__canvas {
@@ -231,6 +270,8 @@
 .experience-map__galaxy {
   position: absolute;
   inset: -20%;
+  width: 100%;
+  height: 100%;
   z-index: 0;
   background:
     conic-gradient(
@@ -345,36 +386,9 @@
   transform: none;
 }
 
-/* Header in deep space */
-
-.site-header--cosmos {
-  color: rgb(255 255 255 / 92%);
-}
-
-.site-header--cosmos.site-header--solid {
-  background: rgb(18 16 14 / 78%);
-  border-color: rgb(255 255 255 / 10%);
-}
-
-.site-header--cosmos .site-header__brand,
-.site-header--cosmos .site-header__brand-text {
-  color: rgb(255 255 255 / 94%);
-}
-
-.site-header--cosmos .site-header__brand-text span,
-.site-header--cosmos .site-nav a {
-  color: rgb(255 255 255 / 58%);
-}
-
-.site-header--cosmos .site-nav a:hover {
-  color: rgb(255 255 255 / 92%);
-  background: rgb(255 255 255 / 8%);
-}
-
-.site-header--cosmos .site-header__monogram {
-  border-color: rgb(255 255 255 / 18%);
-  background: rgb(255 255 255 / 6%);
-  color: rgb(255 255 255 / 85%);
+.hero__copy,
+.hero__visual {
+  width: 100%;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -392,13 +406,12 @@
 .cosmic-dawn {
   position: relative;
   z-index: 1;
-  height: clamp(4rem, 10vw, 6rem);
+  height: clamp(3rem, 8vw, 5rem);
   margin-top: -1px;
   background: linear-gradient(
     180deg,
     var(--color-space-900) 0%,
-    #2a2420 35%,
-    var(--color-cream-deep) 100%
+    var(--color-bg-soft) 100%
   );
   overflow: hidden;
 }

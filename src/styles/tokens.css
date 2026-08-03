@@ -4,22 +4,29 @@
   --font-sans: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-display: "Instrument Serif", Georgia, "Times New Roman", serif;
 
-  --color-cream: #f7f3ec;
-  --color-cream-deep: #ebe4d9;
-  --color-paper: #fffdf9;
-  --color-ink: #1f1b17;
-  --color-ink-soft: #4a433c;
-  --color-muted: #8a8178;
-  --color-line: #ddd4c8;
-  --color-line-strong: #c9bfb0;
-  --color-accent: #a97444;
-  --color-accent-hover: #8f5f36;
-  --color-accent-soft: #e8dccf;
-  --color-accent-glow: rgb(169 116 68 / 22%);
+  /* Dark celestial palette */
+  --color-bg: #0a0908;
+  --color-bg-raised: #12100e;
+  --color-bg-panel: #181513;
+  --color-bg-soft: #1f1b18;
 
-  --color-space-900: #12100e;
-  --color-space-800: #1c1916;
-  --color-space-700: #2b2621;
+  --color-cream: var(--color-bg);
+  --color-cream-deep: var(--color-bg-soft);
+  --color-paper: var(--color-bg-panel);
+
+  --color-ink: #f4f0ea;
+  --color-ink-soft: #c8c0b6;
+  --color-muted: #8a8278;
+  --color-line: rgb(255 255 255 / 10%);
+  --color-line-strong: rgb(255 255 255 / 16%);
+  --color-accent: #d4a574;
+  --color-accent-hover: #e8bc8a;
+  --color-accent-soft: rgb(212 165 116 / 18%);
+  --color-accent-glow: rgb(212 165 116 / 28%);
+
+  --color-space-900: #0a0908;
+  --color-space-800: #12100e;
+  --color-space-700: #221e1a;
 
   --space-section: clamp(5rem, 11vw, 8rem);
   --space-gutter: clamp(1.25rem, 4vw, 2.75rem);
@@ -27,8 +34,8 @@
   --header-height: 4.5rem;
 
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --shadow-soft: 0 22px 60px rgb(31 27 23 / 9%);
-  --shadow-lift: 0 12px 32px rgb(31 27 23 / 7%);
+  --shadow-soft: 0 24px 70px rgb(0 0 0 / 45%);
+  --shadow-lift: 0 14px 40px rgb(0 0 0 / 35%);
   --radius-lg: 1rem;
   --radius-xl: 1.5rem;
   --radius-pill: 999px;
@@ -57,7 +64,7 @@ body {
   font-size: 1rem;
   line-height: 1.6;
   color: var(--color-ink);
-  background: var(--color-cream);
+  background: var(--color-bg);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -68,7 +75,7 @@ body::before {
   inset: 0;
   z-index: 9999;
   pointer-events: none;
-  opacity: 0.045;
+  opacity: 0.06;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
