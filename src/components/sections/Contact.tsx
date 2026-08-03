@@ -20,19 +20,19 @@ export function Contact() {
             <div>
               <p className="section__eyebrow">Contact</p>
               <h2 className="section__title" id="contact-title">
-                Let&apos;s talk about your next site or product
+                Let&apos;s talk about your next site or role
               </h2>
-              <p className="section__lede">
-                Open to freelance collaborations, full-time opportunities, and
-                conversations about front-end work, SEO, and thoughtful
-                implementation.
-              </p>
+              <p className="section__lede">{profile.contactLead}</p>
             </div>
 
             <div className="contact__links">
               <div className="contact__link-row">
                 <span>Email</span>
                 <a href={profile.links.email}>{profile.email}</a>
+              </div>
+              <div className="contact__link-row">
+                <span>Phone</span>
+                <a href={profile.links.phone}>{profile.phone}</a>
               </div>
               <div className="contact__link-row">
                 <span>LinkedIn</span>
@@ -50,9 +50,18 @@ export function Contact() {
                   @Brento20
                 </a>
               </div>
-              <a className="btn btn--primary" href={profile.links.email}>
-                Send an email
-              </a>
+              <div className="contact__actions">
+                <a className="btn btn--primary" href={profile.links.email}>
+                  Send an email
+                </a>
+                <a
+                  className="btn btn--ghost"
+                  href={profile.links.resume}
+                  download
+                >
+                  Download résumé
+                </a>
+              </div>
             </div>
           </div>
         </motion.div>

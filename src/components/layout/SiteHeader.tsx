@@ -29,7 +29,9 @@ export function SiteHeader() {
       <div className="site-header__inner">
         <a className="site-header__brand" href="#top">
           {profile.name}
-          <span>{profile.role}</span>
+          <span>
+            {profile.role} · {profile.roleDetail}
+          </span>
         </a>
 
         <nav aria-label="Primary">

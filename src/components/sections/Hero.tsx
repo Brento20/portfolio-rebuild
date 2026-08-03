@@ -26,7 +26,7 @@ export function Hero() {
         </motion.h1>
 
         <motion.p className="hero__role" {...fade}>
-          {profile.role}
+          {profile.role} · {profile.roleDetail}
         </motion.p>
 
         <motion.p className="hero__lead" {...fade}>

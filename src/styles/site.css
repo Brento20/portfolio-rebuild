@@ -506,6 +506,13 @@
   color: var(--color-accent);
 }
 
+.contact__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
 .site-footer {
   padding: 1.5rem var(--space-gutter) 2.5rem;
   border-top: 1px solid var(--color-line);

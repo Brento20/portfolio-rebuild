@@ -19,7 +19,7 @@ export function Intro() {
           <div>
             <p className="section__eyebrow">About</p>
             <h2 className="section__title" id="about-title">
-              Building sites that feel as considered as the brands behind them
+              {profile.introTitle}
             </h2>
             <div className="intro__copy">
               {profile.intro.map((paragraph) => (
