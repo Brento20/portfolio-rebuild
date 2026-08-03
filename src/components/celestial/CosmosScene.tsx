@@ -12,6 +12,34 @@ const FIELD_DEPTH = 900;
 const CAMERA_START = 60;
 const CAMERA_TRAVEL = 260;
 
+/*
+  PointsMaterial draws hard-edged squares by default. A soft round alpha
+  mask turns each point into a gently feathered dot instead.
+*/
+function createStarSprite() {
+  const size = 64;
+  const canvas = document.createElement("canvas");
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext("2d")!;
+  const gradient = ctx.createRadialGradient(
+    size / 2,
+    size / 2,
+    0,
+    size / 2,
+    size / 2,
+    size / 2,
+  );
+  gradient.addColorStop(0, "rgba(255,255,255,1)");
+  gradient.addColorStop(0.45, "rgba(255,255,255,0.55)");
+  gradient.addColorStop(1, "rgba(255,255,255,0)");
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, size, size);
+  return new THREE.CanvasTexture(canvas);
+}
+
+const starSprite = createStarSprite();
+
 function useScrollProgress() {
   const progress = useRef(0);
 
@@ -57,12 +85,14 @@ function StarLayer({ count, size, color, opacity, drift = 0.006 }: StarLayerProp
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
       <pointsMaterial
+        map={starSprite}
         size={size}
         color={color}
         transparent
         opacity={opacity}
         sizeAttenuation
         depthWrite={false}
+        alphaTest={0.01}
       />
     </points>
   );
@@ -92,10 +122,11 @@ export function CosmosScene() {
       gl={{ antialias: false, powerPreference: "low-power" }}
       style={{ position: "absolute", inset: 0 }}
     >
-      <fog attach="fog" args={["#0b0a09", 120, 620]} />
-      <StarLayer count={1600} size={0.7} color="#f4f1ea" opacity={0.85} />
-      <StarLayer count={500} size={1.25} color="#d4a574" opacity={0.6} drift={-0.004} />
-      <StarLayer count={220} size={1.9} color="#ffffff" opacity={0.9} drift={0.003} />
+      {/* must match --color-bg in tokens.css so the field fades into the page, not a seam */}
+      <fog attach="fog" args={["#0a0f1a", 120, 620]} />
+      <StarLayer count={1600} size={0.8} color="#f4f1ea" opacity={0.45} />
+      <StarLayer count={500} size={1.3} color="#d4a574" opacity={0.32} drift={-0.004} />
+      <StarLayer count={220} size={1.8} color="#ffffff" opacity={0.5} drift={0.003} />
       <TravellingCamera reduceMotion={reduceMotion} />
     </Canvas>
   );

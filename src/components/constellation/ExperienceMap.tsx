@@ -97,6 +97,12 @@ export function ExperienceMap({ overlay }: ExperienceMapProps) {
             <Starfield count={1100} />
           </div>
 
+          <div className="experience-map__graticule" aria-hidden="true">
+            <span className="experience-map__ring experience-map__ring--one" />
+            <span className="experience-map__ring experience-map__ring--two" />
+            <span className="experience-map__ring experience-map__ring--three" />
+          </div>
+
           <ShootingStars count={5} />
 
           <div
@@ -161,6 +167,13 @@ export function ExperienceMap({ overlay }: ExperienceMapProps) {
               {overlay}
             </motion.div>
           ) : null}
+
+          <div className="experience-map__frame" aria-hidden="true">
+            <span className="experience-map__tick experience-map__tick--tl" />
+            <span className="experience-map__tick experience-map__tick--tr" />
+            <span className="experience-map__tick experience-map__tick--bl" />
+            <span className="experience-map__tick experience-map__tick--br" />
+          </div>
         </div>
       </div>
 

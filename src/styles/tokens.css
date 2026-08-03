@@ -1,11 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap");
 
 :root {
   --font-sans: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-display: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 
-  --color-bg: #0b0a09;
-  --color-bg-panel: #161311;
+  /* deep-field navy, lifted from the reference star chart's sky tone */
+  --color-bg: #0a0f1a;
+  --color-bg-deep: #060910;
+  --color-bg-panel: #131d2c;
 
   --color-ink: #f4f1ea;
   --color-ink-soft: #b7afa4;
@@ -15,6 +18,12 @@
   --color-accent: #d4a574;
   --color-accent-hover: #e6bd8d;
   --color-accent-glow: rgb(212 165 116 / 25%);
+  --color-ink-on-accent: #0c1119;
+
+  /* ecliptic teal — secondary accent for hairlines, coordinates, instrument marks */
+  --color-accent-cool: #6f9c97;
+  --color-accent-cool-hover: #8ebab5;
+  --color-accent-cool-glow: rgb(111 156 151 / 25%);
 
   /* type scale — 1.25 ratio anchored at 1rem */
   --text-xs: 0.6875rem;
@@ -63,6 +72,18 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+}
+
+/* whole-page film grain — sits above every layer, blend-mode keeps it from ever reading as dirt */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }
 
 img,

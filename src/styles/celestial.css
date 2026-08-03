@@ -10,7 +10,7 @@
   pointer-events: none;
   background: radial-gradient(
     110% 70% at 50% 0%,
-    #16120e 0%,
+    var(--color-bg-panel) 0%,
     var(--color-bg) 60%
   );
 }
@@ -35,7 +35,7 @@
   height: 50vh;
   bottom: -22%;
   left: -15%;
-  background: rgb(110 90 160 / 7%);
+  background: rgb(111 156 151 / 8%);
   animation-duration: 75s;
   animation-delay: -20s;
 }
