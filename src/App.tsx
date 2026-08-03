@@ -16,7 +16,13 @@ function App() {
         <Contact />
       </main>
       <footer className="site-footer">
-        © {new Date().getFullYear()} {profile.name}. Crafted in Sydney.
+        <span className="site-footer__mark" aria-hidden="true">
+          BW
+        </span>
+        <p>
+          © {new Date().getFullYear()} {profile.name}
+        </p>
+        <p className="site-footer__note">Sydney · Front-end systems design</p>
       </footer>
     </>
   );

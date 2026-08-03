@@ -28,9 +28,14 @@ export function SiteHeader() {
     >
       <div className="site-header__inner">
         <a className="site-header__brand" href="#top">
-          {profile.name}
-          <span>
-            {profile.role} · {profile.roleDetail}
+          <span className="site-header__monogram" aria-hidden="true">
+            BW
+          </span>
+          <span className="site-header__brand-text">
+            {profile.name}
+            <span>
+              {profile.role} · {profile.roleDetail}
+            </span>
           </span>
         </a>
 
