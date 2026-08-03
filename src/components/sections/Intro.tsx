@@ -21,6 +21,7 @@ export function Intro() {
       <ParallaxLayer depth={6} className="intro__veil-wrap">
         <CelestialVeil variant="deep" starCount={80} />
       </ParallaxLayer>
+      <ShootingStars count={2} className="shooting-stars--subtle" />
       <div className="section__inner">
         <motion.div
           className="intro__layout"
