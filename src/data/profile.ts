@@ -36,6 +36,58 @@ export const profile = {
   ],
   contactLead:
     "Open to senior front-end roles, freelance builds, and conversations where implementation meets strategy — SEO, performance, accessibility, and landing-page optimisation included.",
+  career: [
+    {
+      period: "2022 — Present",
+      role: "Senior Web Developer",
+      org: "SERV. Agency",
+      note: "Progressed Junior → Mid → Senior. Built agency-wide CSS/LESS/JS component systems editable by non-technical users; maintained UI consistency across 200+ hospitality, media, dental, and architecture sites; supported up to 100 legacy builds at once. Rising Star and MVP awards.",
+    },
+    {
+      period: "2021 — 2022",
+      role: "Full Stack Flex Program",
+      org: "University of Sydney · Trilogy",
+      note: "HTML, CSS, JavaScript, TypeScript, React, Node.js, Express, MongoDB, GraphQL — with ongoing General Assembly short courses.",
+    },
+    {
+      period: "2013 — 2022",
+      role: "Store Manager · Brand & Product Trainer",
+      org: "LUSH Handmade Cosmetics",
+      note: "Led 40+ people across two flagship stores and $5M+ annual revenue — KPI-driven retail, activations, and visual merchandising.",
+    },
+    {
+      period: "2012 — 2013",
+      role: "Account Supervisor",
+      org: "Cudo (Channel 9)",
+      note: "Merchant onboarding and delivery on a high-traffic ecommerce platform.",
+    },
+  ],
+  toolkit: [
+    {
+      label: "Core web",
+      items: ["HTML5", "CSS3", "LESS", "JavaScript", "TypeScript"],
+    },
+    {
+      label: "Frameworks",
+      items: ["React", "Node.js", "Express", "jQuery", "Bootstrap"],
+    },
+    {
+      label: "Design & workflow",
+      items: ["Figma", "GitHub", "Adobe CC", "Affinity", "Canva"],
+    },
+    {
+      label: "Platforms",
+      items: ["Squarespace", "WordPress", "Wix", "CSS/JS overrides"],
+    },
+    {
+      label: "Infrastructure",
+      items: ["DNS & domains", "Email services", "Performance", "Technical SEO"],
+    },
+    {
+      label: "Data",
+      items: ["SQL", "MongoDB", "Apollo GraphQL"],
+    },
+  ],
   links: {
     linkedin: "https://www.linkedin.com/in/brenton-christopher-weaver",
     github: "https://github.com/Brento20",

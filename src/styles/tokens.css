@@ -7,14 +7,25 @@
   --color-bg: #0b0a09;
   --color-bg-panel: #161311;
 
-  --color-ink: #f2eee7;
-  --color-ink-soft: #c3bbb0;
-  --color-muted: #837b70;
+  --color-ink: #f4f1ea;
+  --color-ink-soft: #b7afa4;
+  --color-muted: #7d766c;
   --color-line: rgb(255 255 255 / 9%);
   --color-line-strong: rgb(255 255 255 / 15%);
   --color-accent: #d4a574;
   --color-accent-hover: #e6bd8d;
   --color-accent-glow: rgb(212 165 116 / 25%);
+
+  /* type scale — 1.25 ratio anchored at 1rem */
+  --text-xs: 0.6875rem;
+  --text-sm: 0.8125rem;
+  --text-base: 1rem;
+  --text-md: 1.0625rem;
+  --text-lg: clamp(1.125rem, 2vw, 1.25rem);
+  --text-title: clamp(1.9rem, 4.6vw, 3rem);
+  --text-hero: clamp(3.4rem, 11vw, 6.5rem);
+
+  --tracking-caps: 0.22em;
 
   --space-section: clamp(6rem, 14vw, 10rem);
   --space-gutter: clamp(1.25rem, 4vw, 2.75rem);
@@ -80,4 +91,9 @@ a:hover {
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
+}
+
+::selection {
+  background: rgb(212 165 116 / 30%);
+  color: var(--color-ink);
 }

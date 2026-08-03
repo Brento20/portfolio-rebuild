@@ -3,6 +3,7 @@ import type { Project } from "../types/project";
 export const projects: Project[] = [
   {
     id: "medley-kangaroo-point",
+    image: "/projects/medley-kangaroo-point.jpg",
     title: "Medley Kangaroo Point",
     url: "https://medleykp.com.au/",
     location: "Brisbane, Queensland",
@@ -50,6 +51,7 @@ export const projects: Project[] = [
   },
   {
     id: "akiba",
+    image: "/projects/akiba.jpg",
     title: "AKIBA",
     url: "https://akiba.com.au/",
     location: "Canberra, ACT",
@@ -97,6 +99,7 @@ export const projects: Project[] = [
   },
   {
     id: "girdlers",
+    image: "/projects/girdlers.jpg",
     title: "Girdlers",
     url: "https://www.girdlers.com.au/",
     location: "Sydney, New South Wales",
@@ -144,6 +147,7 @@ export const projects: Project[] = [
   },
   {
     id: "studio-gaxa",
+    image: "/projects/studio-gaxa.jpg",
     title: "Studio GAXA",
     url: "https://www.studiogaxa.com.au/",
     location: "Sydney, New South Wales",
@@ -201,6 +205,7 @@ export const projects: Project[] = [
   },
   {
     id: "huzzah",
+    image: "/projects/huzzah.jpg",
     title: "Huzzah",
     url: "https://wearehuzzah.com/",
     location: "Melbourne, Victoria",
@@ -248,6 +253,7 @@ export const projects: Project[] = [
   },
   {
     id: "darling-glebe",
+    image: "/projects/darling-glebe.jpg",
     title: "Darling Glebe",
     url: "https://darlingglebe.com.au/",
     location: "Sydney, New South Wales",
@@ -308,6 +314,7 @@ export const projects: Project[] = [
   },
   {
     id: "website-audit-dashboard",
+    image: "/projects/website-audit-dashboard.jpg",
     title: "Website Audit Dashboard",
     url: "https://website-audit-dashboard.onrender.com/",
     location: "Personal Project",
