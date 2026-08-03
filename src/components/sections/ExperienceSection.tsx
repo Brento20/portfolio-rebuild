@@ -1,22 +1,17 @@
-import { useRef } from "react";
 import { ExperienceMap } from "../constellation/ExperienceMap";
 import { CosmicHorizon } from "../celestial/CosmicHorizon";
 import { SectionHead } from "../layout/SectionHead";
 
 export function ExperienceSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-
   return (
     <>
       <CosmicHorizon />
       <section
-        ref={sectionRef}
         className="experience-section experience-section--immersive"
         id="experience"
         aria-labelledby="experience-title"
       >
         <ExperienceMap
-          scrollRootRef={sectionRef}
           overlay={
             <SectionHead
               index="02"

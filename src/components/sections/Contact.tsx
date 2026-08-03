@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from "framer-motion";
+import { ParallaxLayer } from "../celestial/ParallaxLayer";
 import { CosmicDawn } from "../celestial/CosmicDawn";
 import { profile } from "../../data/profile";
 import { SectionHead } from "../layout/SectionHead";
@@ -20,16 +21,19 @@ export function Contact() {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5, ease: enterEase }}
         >
-          <SectionHead
-            index="03"
-            eyebrow="Contact"
-            title="Let's talk about your next site or role"
-            titleId="contact-title"
-            lede={<p>{profile.contactLead}</p>}
-            className="contact__head"
-          />
+          <ParallaxLayer depth={12}>
+            <SectionHead
+              index="03"
+              eyebrow="Contact"
+              title="Let's talk about your next site or role"
+              titleId="contact-title"
+              lede={<p>{profile.contactLead}</p>}
+              className="contact__head"
+            />
+          </ParallaxLayer>
 
-          <div className="contact__panel">
+          <ParallaxLayer depth={20}>
+            <div className="contact__panel">
             <div className="contact__panel-accent" aria-hidden="true" />
 
             <div className="contact__grid">
@@ -84,6 +88,7 @@ export function Contact() {
               </div>
             </div>
           </div>
+          </ParallaxLayer>
         </motion.div>
       </div>
       </section>
