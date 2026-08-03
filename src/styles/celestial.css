@@ -16,6 +16,12 @@
     );
 }
 
+.cosmos__nebula-wrap {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 40%;
+}
+
 .cosmos__nebula {
   position: absolute;
   border-radius: 50%;
@@ -54,6 +60,7 @@
 .cosmos__stars {
   position: absolute;
   inset: 0;
+  transform-origin: 50% 42%;
 }
 
 .cosmos__stars--far {

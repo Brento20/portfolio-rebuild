@@ -1,12 +1,8 @@
-import { motion, useReducedMotion } from "framer-motion";
+import { Approach } from "../celestial/Approach";
 import { profile } from "../../data/profile";
 import { SectionHead } from "../layout/SectionHead";
 
-const enterEase = [0.22, 1, 0.36, 1] as const;
-
 export function Contact() {
-  const reduceMotion = useReducedMotion();
-
   return (
     <section
       className="section contact"
@@ -14,12 +10,7 @@ export function Contact() {
       aria-labelledby="contact-title"
     >
       <div className="section__inner contact__inner">
-        <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.85, ease: enterEase }}
-        >
+        <Approach>
           <div className="contact__beacon" aria-hidden="true">
             <span className="contact__beacon-core" />
             <span className="contact__beacon-ring contact__beacon-ring--one" />
@@ -54,7 +45,7 @@ export function Contact() {
               Résumé
             </a>
           </div>
-        </motion.div>
+        </Approach>
       </div>
     </section>
   );

@@ -42,7 +42,7 @@ export function ProjectDrawer({ project, onClose }: ProjectDrawerProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: reduceMotion ? 0 : 0.22 }}
+            transition={{ duration: reduceMotion ? 0 : 0.25 }}
             onClick={onClose}
           />
 
@@ -51,10 +51,10 @@ export function ProjectDrawer({ project, onClose }: ProjectDrawerProps) {
             aria-label={`${project.title} project details`}
             role="dialog"
             aria-modal="true"
-            initial={reduceMotion ? false : { y: "100%" }}
+            initial={reduceMotion ? false : { y: "104%" }}
             animate={{ y: 0 }}
-            exit={reduceMotion ? undefined : { y: "100%" }}
-            transition={{ duration: 0.38, ease: drawerEase }}
+            exit={reduceMotion ? undefined : { y: "104%" }}
+            transition={{ duration: 0.45, ease: drawerEase }}
           >
             <button
               type="button"
@@ -65,30 +65,48 @@ export function ProjectDrawer({ project, onClose }: ProjectDrawerProps) {
               ×
             </button>
 
-            <p className="project-drawer__meta">
-              {project.category} · {project.location}
-            </p>
+            {project.image ? (
+              <a
+                className="project-drawer__figure"
+                href={project.url}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`Visit ${project.title} live site`}
+              >
+                <img
+                  src={project.image}
+                  alt={`${project.title} website`}
+                  loading="lazy"
+                />
+              </a>
+            ) : null}
 
-            <h2 className="project-drawer__title">{project.title}</h2>
+            <div className="project-drawer__body">
+              <p className="project-drawer__meta">
+                {project.category} · {project.location}
+              </p>
 
-            <p className="project-drawer__summary">{project.summary}</p>
+              <h2 className="project-drawer__title">{project.title}</h2>
 
-            <div className="project-drawer__tags">
-              {project.capabilities.map((capability) => (
-                <span className="project-drawer__tag" key={capability}>
-                  {capability}
-                </span>
-              ))}
+              <p className="project-drawer__summary">{project.summary}</p>
+
+              <div className="project-drawer__tags">
+                {project.capabilities.map((capability) => (
+                  <span className="project-drawer__tag" key={capability}>
+                    {capability}
+                  </span>
+                ))}
+              </div>
+
+              <a
+                className="project-drawer__link"
+                href={project.url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Visit live site
+              </a>
             </div>
-
-            <a
-              className="project-drawer__link"
-              href={project.url}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Visit live site
-            </a>
           </motion.aside>
         </>
       ) : null}

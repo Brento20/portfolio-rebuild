@@ -58,6 +58,8 @@ export interface Project {
   capabilities: string[];
   technologies: string[];
   featured: boolean;
+  /** Screenshot path under /public, shown in the project drawer */
+  image?: string;
   profile: ProjectProfile;
   star: ProjectStar;
 }
