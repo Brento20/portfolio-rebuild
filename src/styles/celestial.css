@@ -8,18 +8,11 @@
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  background:
-    radial-gradient(
-      110% 70% at 50% 0%,
-      #16120e 0%,
-      var(--color-bg) 60%
-    );
-}
-
-.cosmos__nebula-wrap {
-  position: absolute;
-  inset: 0;
-  transform-origin: 50% 40%;
+  background: radial-gradient(
+    110% 70% at 50% 0%,
+    #16120e 0%,
+    var(--color-bg) 60%
+  );
 }
 
 .cosmos__nebula {
@@ -54,31 +47,6 @@
 
   to {
     transform: translate3d(3%, 3%, 0) scale(1.12);
-  }
-}
-
-.cosmos__stars {
-  position: absolute;
-  inset: 0;
-  transform-origin: 50% 42%;
-}
-
-.cosmos__stars--far {
-  opacity: 0.75;
-}
-
-.cosmos__stars--near {
-  opacity: 0.9;
-  animation: cosmos-stars-drift 90s linear infinite alternate;
-}
-
-@keyframes cosmos-stars-drift {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-
-  to {
-    transform: translate3d(-1.5%, 1%, 0);
   }
 }
 
@@ -140,7 +108,6 @@ main {
 
 @media (prefers-reduced-motion: reduce) {
   .cosmos__nebula,
-  .cosmos__stars--near,
   .shooting-stars__trail {
     animation: none;
   }

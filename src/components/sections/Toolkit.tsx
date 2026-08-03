@@ -12,26 +12,33 @@ export function Toolkit() {
       <div className="section__inner">
         <Approach>
           <SectionHead
-            eyebrow="Instruments"
+            eyebrow="instruments"
             title="Tools I navigate by"
             titleId="toolkit-title"
           />
         </Approach>
 
-        <div className="toolkit__grid">
-          {profile.toolkit.map((group, index) => (
-            <Approach key={group.label} delay={index * 0.05}>
-              <div className="toolkit__group">
-                <h3 className="toolkit__label">{group.label}</h3>
-                <ul className="toolkit__items">
-                  {group.items.map((item) => (
-                    <li key={item}>{item}</li>
+        <Approach delay={0.08}>
+          <div className="toolkit__index">
+            {profile.toolkit.map((group) => (
+              <div className="toolkit__row" key={group.label}>
+                <h3 className="toolkit__row-label">{group.label}</h3>
+                <p className="toolkit__row-items">
+                  {group.items.map((item, index) => (
+                    <span key={item}>
+                      {index > 0 ? (
+                        <span className="toolkit__sep" aria-hidden="true">
+                          ·
+                        </span>
+                      ) : null}
+                      {item}
+                    </span>
                   ))}
-                </ul>
+                </p>
               </div>
-            </Approach>
-          ))}
-        </div>
+            ))}
+          </div>
+        </Approach>
       </div>
     </section>
   );

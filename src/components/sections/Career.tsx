@@ -12,7 +12,7 @@ export function Career() {
       <div className="section__inner">
         <Approach>
           <SectionHead
-            eyebrow="Trajectory"
+            eyebrow="trajectory"
             title="The path so far"
             titleId="career-title"
           />

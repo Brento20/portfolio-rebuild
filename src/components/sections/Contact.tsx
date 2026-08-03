@@ -18,7 +18,7 @@ export function Contact() {
           </div>
 
           <SectionHead
-            eyebrow="Contact"
+            eyebrow="contact"
             title="Send a signal"
             titleId="contact-title"
             align="center"

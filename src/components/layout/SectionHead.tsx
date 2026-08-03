@@ -27,10 +27,7 @@ export function SectionHead({
         .filter(Boolean)
         .join(" ")}
     >
-      <p className="section-head__eyebrow">
-        <span className="section-head__eyebrow-star" aria-hidden="true" />
-        {eyebrow}
-      </p>
+      <p className="section-head__eyebrow">{eyebrow}</p>
       <h2 className="section-head__title" id={titleId}>
         {title}
       </h2>
