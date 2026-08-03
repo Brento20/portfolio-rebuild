@@ -4,6 +4,7 @@ interface LabelProps {
   title: string;
   x: number;
   y: number;
+  usePercent?: boolean;
   isActive: boolean;
   isDimmed?: boolean;
 }
@@ -12,6 +13,7 @@ export function Label({
   title,
   x,
   y,
+  usePercent = false,
   isActive,
   isDimmed = false,
 }: LabelProps) {
@@ -26,9 +28,9 @@ export function Label({
         .join(" ")}
       style={{
         position: "absolute",
-        left: x,
-        top: y + 22,
-        transform: "translateX(-50%)",
+        left: usePercent ? `${x}%` : x,
+        top: usePercent ? `${y}%` : y,
+        transform: "translate(-50%, 1.65rem)",
       }}
     >
       {title}

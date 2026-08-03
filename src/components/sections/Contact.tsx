@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from "framer-motion";
+import { CosmicDawn } from "../celestial/CosmicDawn";
 import { profile } from "../../data/profile";
 import { SectionHead } from "../layout/SectionHead";
 
@@ -8,7 +9,9 @@ export function Contact() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="section contact" id="contact" aria-labelledby="contact-title">
+    <>
+      <CosmicDawn />
+      <section className="section contact" id="contact" aria-labelledby="contact-title">
       <div className="section__inner">
         <motion.div
           className="contact__layout"
@@ -83,6 +86,7 @@ export function Contact() {
           </div>
         </motion.div>
       </div>
-    </section>
+      </section>
+    </>
   );
 }

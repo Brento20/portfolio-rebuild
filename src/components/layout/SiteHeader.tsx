@@ -9,6 +9,7 @@ const navItems = [
 
 export function SiteHeader() {
   const [solid, setSolid] = useState(false);
+  const [inCosmos, setInCosmos] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -20,9 +21,28 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const experience = document.getElementById("experience");
+    if (!experience) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setInCosmos(entry.isIntersecting && entry.intersectionRatio > 0.35);
+      },
+      { threshold: [0, 0.35, 0.6] },
+    );
+
+    observer.observe(experience);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <header
-      className={["site-header", solid ? "site-header--solid" : ""]
+      className={[
+        "site-header",
+        solid ? "site-header--solid" : "",
+        inCosmos ? "site-header--cosmos" : "",
+      ]
         .filter(Boolean)
         .join(" ")}
     >
