@@ -1,105 +1,88 @@
-/* —— Celestial layers (hero / intro) —— */
+/* ============================================================
+   One continuous cosmos — fixed background behind every section
+   ============================================================ */
 
-.celestial-veil {
-  position: absolute;
+.cosmos {
+  position: fixed;
   inset: 0;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
+  background:
+    radial-gradient(
+      110% 70% at 50% 0%,
+      #16120e 0%,
+      var(--color-bg) 60%
+    );
 }
 
-.celestial-veil--deep {
-  opacity: 1;
-}
-
-.celestial-veil--deep .starfield__star {
-  background: rgb(255 255 255 / 75%);
-}
-
-.celestial-veil--deep .starfield__star--middle {
-  box-shadow: 0 0 5px rgb(212 165 116 / 35%);
-}
-
-.celestial-veil--deep .starfield__star--hero {
-  background: #fff;
-  box-shadow:
-    0 0 6px rgb(255 255 255 / 90%),
-    0 0 14px rgb(212 165 116 / 45%);
-}
-
-.celestial-veil--deep .celestial-veil__aurora--one {
-  background: rgb(169 116 68 / 22%);
-}
-
-.celestial-veil--deep .celestial-veil__aurora--two {
-  background: rgb(120 90 180 / 14%);
-}
-
-.hero__veil-wrap,
-.intro__veil-wrap {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* Cursor follow glow */
-
-.cursor-glow {
-  position: fixed;
-  z-index: 9998;
-  width: 28rem;
-  height: 28rem;
-  margin: 0;
-  border-radius: 50%;
-  pointer-events: none;
-  translate: -50% -50%;
-  background: radial-gradient(
-    circle,
-    rgb(212 165 116 / 14%) 0%,
-    rgb(140 100 200 / 6%) 35%,
-    transparent 68%
-  );
-  mix-blend-mode: screen;
-}
-
-.celestial-veil__aurora {
+.cosmos__nebula {
   position: absolute;
   border-radius: 50%;
-  filter: blur(60px);
-  opacity: 0.35;
-  animation: aurora-drift 22s ease-in-out infinite alternate;
+  filter: blur(90px);
+  animation: cosmos-nebula-drift 60s ease-in-out infinite alternate;
 }
 
-.celestial-veil__aurora--one {
-  width: 55%;
-  height: 45%;
-  top: -10%;
-  right: -8%;
-  background: rgb(220 180 140 / 55%);
+.cosmos__nebula--warm {
+  width: 70vw;
+  height: 55vh;
+  top: -18%;
+  right: -18%;
+  background: rgb(169 116 68 / 9%);
 }
 
-.celestial-veil__aurora--two {
-  width: 48%;
-  height: 40%;
-  bottom: -15%;
-  left: -10%;
-  background: rgb(190 160 130 / 45%);
-  animation-duration: 28s;
-  animation-delay: -6s;
+.cosmos__nebula--cool {
+  width: 60vw;
+  height: 50vh;
+  bottom: -22%;
+  left: -15%;
+  background: rgb(110 90 160 / 7%);
+  animation-duration: 75s;
+  animation-delay: -20s;
 }
 
-@keyframes aurora-drift {
+@keyframes cosmos-nebula-drift {
   from {
-    transform: translate3d(-2%, 0, 0) scale(1);
+    transform: translate3d(-2%, -1%, 0) scale(1);
   }
 
   to {
-    transform: translate3d(3%, 4%, 0) scale(1.08);
+    transform: translate3d(3%, 3%, 0) scale(1.12);
   }
 }
 
-/* —— Shooting stars —— */
+.cosmos__stars {
+  position: absolute;
+  inset: 0;
+}
+
+.cosmos__stars--far {
+  opacity: 0.75;
+}
+
+.cosmos__stars--near {
+  opacity: 0.9;
+  animation: cosmos-stars-drift 90s linear infinite alternate;
+}
+
+@keyframes cosmos-stars-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-1.5%, 1%, 0);
+  }
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+   Shooting stars (experience map only)
+   ============================================================ */
 
 .shooting-stars {
   position: absolute;
@@ -109,334 +92,49 @@
   pointer-events: none;
 }
 
-.shooting-stars--subtle .shooting-stars__trail {
-  opacity: 0.35;
-}
-
 .shooting-stars__trail {
   position: absolute;
-  width: 120px;
-  height: 2px;
+  width: 110px;
+  height: 1.5px;
   background: linear-gradient(
     90deg,
     transparent,
-    rgb(255 255 255 / 95%),
+    rgb(255 255 255 / 85%),
     transparent
   );
   border-radius: 999px;
-  opacity: 0.65;
-  transform: rotate(-35deg);
+  opacity: 0;
+  transform: rotate(-32deg);
   animation-name: shooting-star-fly;
-  animation-timing-function: ease-in;
+  animation-timing-function: cubic-bezier(0.3, 0, 0.7, 1);
   animation-iteration-count: infinite;
 }
 
 @keyframes shooting-star-fly {
   0% {
     opacity: 0;
-    translate: -120% 0;
+    translate: -110% 0;
   }
 
-  8% {
-    opacity: 1;
+  6% {
+    opacity: 0.85;
+  }
+
+  22% {
+    opacity: 0;
+    translate: 220% 100%;
   }
 
   100% {
     opacity: 0;
-    translate: 280% 120%;
+    translate: 220% 100%;
   }
-}
-
-/* —— Cosmic horizon (intro → space) —— */
-
-.cosmic-horizon {
-  position: relative;
-  z-index: 2;
-  height: clamp(5rem, 14vw, 9rem);
-  margin-top: -1px;
-  background: linear-gradient(
-    180deg,
-    var(--color-bg-soft) 0%,
-    var(--color-bg-raised) 45%,
-    var(--color-space-900) 100%
-  );
-  overflow: hidden;
-}
-
-.cosmic-horizon__glow {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  width: min(90%, 56rem);
-  height: 120%;
-  transform: translateX(-50%);
-  background: radial-gradient(
-    ellipse at 50% 100%,
-    rgb(201 160 120 / 35%) 0%,
-    rgb(169 116 68 / 12%) 35%,
-    transparent 68%
-  );
-  transform-origin: bottom center;
-}
-
-.cosmic-horizon__band {
-  position: absolute;
-  inset: auto 0 28%;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgb(255 255 255 / 35%),
-    transparent
-  );
-}
-
-.cosmic-horizon__star {
-  position: absolute;
-  bottom: 26%;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 0 10px rgb(255 255 255 / 65%);
-  animation: horizon-star-pulse 3.5s ease-in-out infinite;
-}
-
-.cosmic-horizon__star--a {
-  left: 18%;
-  animation-delay: 0s;
-}
-
-.cosmic-horizon__star--b {
-  left: 42%;
-  animation-delay: 0.7s;
-}
-
-.cosmic-horizon__star--c {
-  left: 68%;
-  animation-delay: 1.2s;
-}
-
-.cosmic-horizon__star--d {
-  left: 86%;
-  animation-delay: 0.35s;
-}
-
-@keyframes horizon-star-pulse {
-  0%,
-  100% {
-    opacity: 0.35;
-    scale: 0.85;
-  }
-
-  50% {
-    opacity: 1;
-    scale: 1.25;
-  }
-}
-
-/* —— Immersive experience map —— */
-
-.experience-section--immersive {
-  padding: 0;
-  margin: 0;
-  background: var(--color-space-900);
-}
-
-.experience-map--immersive {
-  width: 100%;
-}
-
-.experience-map__viewport {
-  width: 100%;
-  height: 100svh;
-  min-height: 32rem;
-  overflow: hidden;
-}
-
-.experience-map__canvas {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background: radial-gradient(
-    ellipse 120% 90% at 50% 42%,
-    #3a322c 0%,
-    var(--color-space-800) 38%,
-    var(--color-space-900) 100%
-  );
-}
-
-.experience-map__galaxy {
-  position: absolute;
-  inset: -20%;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  background:
-    conic-gradient(
-      from 210deg at 50% 50%,
-      transparent 0deg,
-      rgb(169 116 68 / 8%) 55deg,
-      transparent 110deg,
-      rgb(130 100 180 / 6%) 200deg,
-      transparent 280deg
-    ),
-    radial-gradient(
-      circle at 50% 50%,
-      rgb(255 255 255 / 4%) 0%,
-      transparent 42%
-    );
-  opacity: 0.9;
-  animation: galaxy-rotate 120s linear infinite;
-  pointer-events: none;
-}
-
-@keyframes galaxy-rotate {
-  from {
-    rotate: 0deg;
-  }
-
-  to {
-    rotate: 360deg;
-  }
-}
-
-.experience-map__layer {
-  position: absolute;
-  inset: 0;
-}
-
-.experience-map__layer--systems {
-  z-index: 4;
-}
-
-.experience-map__layer--labels {
-  z-index: 5;
-  pointer-events: none;
-}
-
-.experience-map__overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 8;
-  display: flex;
-  align-items: flex-start;
-  padding: calc(var(--header-height) + 1.25rem) var(--space-gutter) 2rem;
-  pointer-events: none;
-  background: linear-gradient(
-    180deg,
-    rgb(18 16 14 / 72%) 0%,
-    rgb(18 16 14 / 28%) 38%,
-    transparent 62%
-  );
-}
-
-.experience-section__head {
-  width: min(var(--max-content), 100%);
-  margin-inline: auto;
-  pointer-events: none;
-}
-
-.experience-section__head .section-head__title {
-  max-width: 22ch;
-}
-
-.experience-map__scroll-hint {
-  position: absolute;
-  left: 50%;
-  bottom: 1.35rem;
-  z-index: 9;
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.55rem 0.85rem;
-  border: 1px solid rgb(255 255 255 / 14%);
-  border-radius: var(--radius-pill);
-  background: rgb(20 18 16 / 55%);
-  backdrop-filter: blur(10px);
-  color: rgb(255 255 255 / 72%);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  text-decoration: none;
-  translate: -50% 0;
-  animation: scroll-hint-bob 2.8s ease-in-out infinite;
-}
-
-.experience-map__scroll-hint-icon {
-  font-size: 0.85rem;
-  line-height: 1;
-}
-
-@keyframes scroll-hint-bob {
-  0%,
-  100% {
-    translate: -50% 0;
-  }
-
-  50% {
-    translate: -50% 5px;
-  }
-}
-
-.experience-map__scroll-hint {
-  transform: none;
-}
-
-.hero__copy,
-.hero__visual {
-  width: 100%;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .celestial-veil__aurora,
-  .shooting-stars__trail,
-  .experience-map__galaxy,
-  .experience-map__scroll-hint,
-  .cosmic-horizon__star {
+  .cosmos__nebula,
+  .cosmos__stars--near,
+  .shooting-stars__trail {
     animation: none;
-  }
-}
-
-/* —— Return to daylight (contact) —— */
-
-.cosmic-dawn {
-  position: relative;
-  z-index: 1;
-  height: clamp(3rem, 8vw, 5rem);
-  margin-top: -1px;
-  background: linear-gradient(
-    180deg,
-    var(--color-space-900) 0%,
-    var(--color-bg-soft) 100%
-  );
-  overflow: hidden;
-}
-
-.cosmic-dawn__glow {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: min(100%, 48rem);
-  height: 140%;
-  transform: translateX(-50%);
-  background: radial-gradient(
-    ellipse at 50% 0%,
-    rgb(255 220 180 / 28%) 0%,
-    transparent 62%
-  );
-  animation: dawn-breathe 8s ease-in-out infinite alternate;
-}
-
-@keyframes dawn-breathe {
-  from {
-    opacity: 0.65;
-  }
-
-  to {
-    opacity: 1;
   }
 }

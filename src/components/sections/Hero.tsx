@@ -1,95 +1,96 @@
-import { motion, useReducedMotion } from "framer-motion";
-import { ParallaxLayer } from "../celestial/ParallaxLayer";
-import { CelestialVeil } from "../celestial/CelestialVeil";
-import { ShootingStars } from "../celestial/ShootingStars";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { profile } from "../../data/profile";
-import { HeroOrbit } from "./HeroOrbit";
 
 const enterEase = [0.22, 1, 0.36, 1] as const;
 
 const stagger = {
   animate: {
-    transition: { staggerChildren: 0.09, delayChildren: 0.05 },
+    transition: { staggerChildren: 0.12, delayChildren: 0.15 },
   },
 };
 
-const item = {
-  initial: { opacity: 0, y: 22 },
+const rise = {
+  initial: { opacity: 0, y: 26 },
   animate: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.65, ease: enterEase },
+    transition: { duration: 0.9, ease: enterEase },
   },
 };
 
 export function Hero() {
   const reduceMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  const copyY = useTransform(scrollYProgress, [0, 1], [0, 90]);
+  const copyOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const ringsY = useTransform(scrollYProgress, [0, 1], [0, 150]);
 
   return (
-    <section className="hero" id="top" aria-labelledby="hero-title">
-      <ParallaxLayer depth={8} className="hero__veil-wrap">
-        <CelestialVeil variant="deep" starCount={140} />
-      </ParallaxLayer>
-      <ShootingStars count={4} className="shooting-stars--subtle" />
-      <div className="hero__backdrop" aria-hidden="true" />
-      <div className="hero__inner">
-        <motion.div
-          className="hero__grid"
-          variants={reduceMotion ? undefined : stagger}
-          initial={reduceMotion ? false : "initial"}
-          animate={reduceMotion ? undefined : "animate"}
-        >
-          <ParallaxLayer depth={16} className="hero__copy">
-            <motion.p className="hero__eyebrow" variants={item}>
-              <span className="hero__eyebrow-dot" aria-hidden="true" />
-              {profile.location}
-            </motion.p>
+    <section
+      ref={sectionRef}
+      className="hero"
+      id="top"
+      aria-labelledby="hero-title"
+    >
+      <motion.div
+        className="hero__rings"
+        aria-hidden="true"
+        style={reduceMotion ? undefined : { y: ringsY }}
+      >
+        <span className="hero__ring hero__ring--one" />
+        <span className="hero__ring hero__ring--two" />
+        <span className="hero__ring hero__ring--three" />
+        <span className="hero__ring-planet" />
+      </motion.div>
 
-            <motion.h1 className="hero__title" id="hero-title" variants={item}>
-              {profile.name.split(" ").map((part, index) => (
-                <span key={part} className="hero__title-part">
-                  {part}
-                  {index === 0 ? <br /> : null}
-                </span>
-              ))}
-            </motion.h1>
+      <motion.div
+        className="hero__inner"
+        style={reduceMotion ? undefined : { y: copyY, opacity: copyOpacity }}
+        variants={reduceMotion ? undefined : stagger}
+        initial={reduceMotion ? false : "initial"}
+        animate={reduceMotion ? undefined : "animate"}
+      >
+        <motion.p className="hero__eyebrow" variants={rise}>
+          {profile.location} · {profile.role}
+        </motion.p>
 
-            <motion.p className="hero__role" variants={item}>
-              <span>{profile.role}</span>
-              <span className="hero__role-sep" aria-hidden="true">
-                /
-              </span>
-              <span className="hero__role-detail">{profile.roleDetail}</span>
-            </motion.p>
+        <motion.h1 className="hero__title" id="hero-title" variants={rise}>
+          {profile.name}
+        </motion.h1>
 
-            <motion.p className="hero__tagline" variants={item}>
-              {profile.tagline}
-            </motion.p>
+        <motion.p className="hero__lead" variants={rise}>
+          {profile.tagline}
+        </motion.p>
 
-            <motion.p className="hero__lead" variants={item}>
-              {profile.heroLead}
-            </motion.p>
-
-            <motion.div className="hero__actions" variants={item}>
-              <a className="btn btn--primary" href="#experience">
-                Enter the map
-                <span className="btn__arrow" aria-hidden="true">
-                  →
-                </span>
-              </a>
-              <a className="btn btn--ghost" href="#contact">
-                Get in touch
-              </a>
-            </motion.div>
-          </ParallaxLayer>
-
-          <ParallaxLayer depth={28} className="hero__visual">
-            <motion.div variants={item}>
-              <HeroOrbit />
-            </motion.div>
-          </ParallaxLayer>
+        <motion.div className="hero__actions" variants={rise}>
+          <a className="btn btn--primary" href="#experience">
+            Explore the constellation
+          </a>
+          <a className="btn btn--ghost" href="#contact">
+            Get in touch
+          </a>
         </motion.div>
-      </div>
+      </motion.div>
+
+      <motion.a
+        className="hero__scroll"
+        href="#about"
+        aria-label="Scroll to about section"
+        initial={reduceMotion ? false : { opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.4, duration: 1 }}
+      >
+        <span className="hero__scroll-line" aria-hidden="true" />
+      </motion.a>
+
+      <div className="hero__horizon" aria-hidden="true" />
     </section>
   );
 }
