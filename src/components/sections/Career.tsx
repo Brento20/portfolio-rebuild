@@ -12,9 +12,11 @@ export function Career() {
       <div className="section__inner">
         <Approach>
           <SectionHead
-            eyebrow="trajectory"
             title="The path so far"
+            subtitle="a decade of shipping, leading and learning"
             titleId="career-title"
+            align="right"
+            className="career__head"
           />
         </Approach>
 
@@ -26,6 +28,9 @@ export function Career() {
               delay={index * 0.06}
             >
               <span className="career__marker" aria-hidden="true" />
+              <span className="career__year" aria-hidden="true">
+                {entry.year}
+              </span>
               <p className="career__period">{entry.period}</p>
               <h3 className="career__role">
                 {entry.role}

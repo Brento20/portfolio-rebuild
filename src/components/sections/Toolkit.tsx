@@ -12,8 +12,8 @@ export function Toolkit() {
       <div className="section__inner">
         <Approach>
           <SectionHead
-            eyebrow="instruments"
-            title="Tools I navigate by"
+            title="Instruments"
+            subtitle="the tools I navigate by"
             titleId="toolkit-title"
           />
         </Approach>

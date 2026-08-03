@@ -9,7 +9,7 @@ export const projects: Project[] = [
     location: "Brisbane, Queensland",
     category: "Client Website",
     summary:
-      "A premium riverside restaurant and events website balancing everyday dining with weddings, private events, catering and live entertainment. My work included custom styling, technical SEO, JavaScript enhancements and domain support.",
+      "A riverside restaurant that needed to feel as polished as a night on the patio — menus, weddings, private events and live music, all under one brand. I handled the custom styling, technical SEO, JavaScript touches and the domain side of things.",
     industries: ["Hospitality", "Events"],
     capabilities: [
       "CSS and LESS Styling",
@@ -57,7 +57,7 @@ export const projects: Project[] = [
     location: "Canberra, ACT",
     category: "Client Website",
     summary:
-      "A fast-paced hospitality website for one of Canberra's best-known restaurants. The build translates a bold visual identity into a responsive experience supporting menus, promotions, reservations and events.",
+      "Canberra's electric little restaurant with a big personality. The brief was to keep that energy online — bold type, fast pages, menus and bookings without losing the attitude. I worked from Figma into a responsive build that feels as loud as the room.",
     industries: ["Hospitality", "Restaurants"],
     capabilities: [
       "CSS and LESS Styling",
@@ -105,7 +105,7 @@ export const projects: Project[] = [
     location: "Sydney, New South Wales",
     category: "Client Website",
     summary:
-      "A multi-location café and restaurant website designed to bring several venues together under one cohesive brand. The experience supports location discovery, menus, brand storytelling and clear customer journeys.",
+      "Several cafés, one brand — and a site that needed to help people find the right location without getting lost in the noise. Menus, storytelling and clear journeys, built so the team can keep it fresh themselves.",
     industries: ["Hospitality", "Cafés", "Multi-location"],
     capabilities: [
       "CSS and LESS Styling",
@@ -153,7 +153,7 @@ export const projects: Project[] = [
     location: "Sydney, New South Wales",
     category: "Ecommerce",
     summary:
-      "A refined digital platform for a luxury interior and building design studio. The site combines an editorial blog, detailed project portfolio and integrated commerce while maintaining a spacious, design-led experience.",
+      "A design studio that lives and breathes interiors — so the site had to feel just as considered. Editorial blog, project portfolio and shop, held together with plenty of breathing room and careful detail work.",
     industries: ["Architecture", "Interior Design", "Ecommerce"],
     capabilities: [
       "CSS and LESS Styling",
@@ -211,7 +211,7 @@ export const projects: Project[] = [
     location: "Melbourne, Victoria",
     category: "Portfolio",
     summary:
-      "A creative agency website that translates a distinctive visual identity into a responsive front-end experience. The work focused on expressive layouts, motion, custom styling and maintaining clarity across varied creative content.",
+      "A creative agency with a loud visual language — my job was to make that language behave on every screen. Expressive layouts, a bit of motion, custom styling, and enough clarity that the work still leads.",
     industries: ["Creative Agency", "Branding", "Marketing"],
     capabilities: [
       "CSS and LESS Styling",
@@ -259,7 +259,7 @@ export const projects: Project[] = [
     location: "Sydney, New South Wales",
     category: "Client Website",
     summary:
-      "A premium French brasserie website centred on atmosphere, storytelling and conversion. The experience supports reservations, menus, private dining and venue discovery while keeping the presentation polished and approachable.",
+      "A French brasserie that sells atmosphere as much as dinner. Reservations, menus, private dining — all wrapped in a presentation that feels warm and a little glamorous, without getting in the way of booking a table.",
     industries: ["Hospitality", "Restaurants", "Events"],
     capabilities: [
       "CSS and LESS Styling",
@@ -320,7 +320,7 @@ export const projects: Project[] = [
     location: "Personal Project",
     category: "Web Application",
     summary:
-      "A React-based technical SEO auditing platform that analyses websites and surfaces practical issues across metadata, page structure, links and technical implementation. It demonstrates full-stack TypeScript development, server-side page analysis and structured reporting.",
+      "A tool I built for myself (and anyone who'll listen): paste a URL, get a clear report on metadata, structure, links and the technical bits that quietly hurt rankings. React and TypeScript on the front, Node on the back — made to be useful, not flashy.",
     industries: ["Developer Tools", "SEO", "Software"],
     capabilities: [
       "React Development",

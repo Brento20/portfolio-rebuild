@@ -16,9 +16,21 @@ interface ExperienceMapProps {
 }
 
 /*
-  Parallax is scoped to the map: it responds to the pointer moving
-  across the field itself, easing back to rest when the pointer leaves.
+  Constellation figure — which stars are joined by hairlines,
+  in the tradition of printed star charts.
 */
+const constellationFigure: [string, string][] = [
+  ["medley-kangaroo-point", "akiba"],
+  ["akiba", "darling-glebe"],
+  ["akiba", "girdlers"],
+  ["darling-glebe", "girdlers"],
+  ["girdlers", "website-audit-dashboard"],
+  ["website-audit-dashboard", "studio-gaxa"],
+  ["studio-gaxa", "huzzah"],
+  ["huzzah", "medley-kangaroo-point"],
+  ["studio-gaxa", "medley-kangaroo-point"],
+];
+
 export function ExperienceMap({ overlay }: ExperienceMapProps) {
   const [selectedProject, setSelectedProject] =
     useState<Project | null>(null);
@@ -28,6 +40,7 @@ export function ExperienceMap({ overlay }: ExperienceMapProps) {
   const backgroundRef = useRef<HTMLDivElement>(null);
   const starsRef = useRef<HTMLDivElement>(null);
   const labelsRef = useRef<HTMLDivElement>(null);
+  const linesRef = useRef<HTMLDivElement>(null);
 
   const reduceMotion = useReducedMotion();
 
@@ -66,10 +79,11 @@ export function ExperienceMap({ overlay }: ExperienceMapProps) {
         el.style.transform = `translate3d(${currentX * amount}px, ${currentY * amount}px, 0)`;
       };
 
-      move(nebulaRef.current, 10);
-      move(backgroundRef.current, 18);
-      move(starsRef.current, 30);
-      move(labelsRef.current, 38);
+      move(nebulaRef.current, 8);
+      move(backgroundRef.current, 14);
+      move(linesRef.current, 24);
+      move(starsRef.current, 24);
+      move(labelsRef.current, 30);
 
       frame = requestAnimationFrame(animate);
     };
@@ -89,15 +103,64 @@ export function ExperienceMap({ overlay }: ExperienceMapProps) {
     <>
       <div className="experience-map">
         <div className="experience-map__canvas" ref={canvasRef}>
+          {/* chart furniture */}
+          <div className="experience-map__frame" aria-hidden="true" />
+          <div className="experience-map__graticule" aria-hidden="true">
+            <span className="experience-map__graticule-ring experience-map__graticule-ring--one" />
+            <span className="experience-map__graticule-ring experience-map__graticule-ring--two" />
+            <span className="experience-map__graticule-axis experience-map__graticule-axis--h" />
+            <span className="experience-map__graticule-axis experience-map__graticule-axis--v" />
+          </div>
+
           <div ref={nebulaRef} className="experience-map__layer">
             <Nebula />
           </div>
 
           <div ref={backgroundRef} className="experience-map__layer">
-            <Starfield count={1100} />
+            <Starfield count={900} />
           </div>
 
-          <ShootingStars count={5} />
+          <ShootingStars count={4} />
+
+          {/* constellation hairlines between projects */}
+          <div ref={linesRef} className="experience-map__layer">
+            <svg
+              className="experience-map__lines"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              {constellationFigure.map(([a, b]) => {
+                const from = projectLayout[a];
+                const to = projectLayout[b];
+                if (!from || !to) return null;
+
+                const isLit =
+                  hasSelection &&
+                  (selectedProject?.id === a || selectedProject?.id === b);
+
+                return (
+                  <line
+                    key={`${a}-${b}`}
+                    className={[
+                      "experience-map__line",
+                      isLit ? "experience-map__line--lit" : "",
+                      hasSelection && !isLit
+                        ? "experience-map__line--faded"
+                        : "",
+                    ]
+                      .filter(Boolean)
+                      .join(" ")}
+                    x1={from.x}
+                    y1={from.y}
+                    x2={to.x}
+                    y2={to.y}
+                    vectorEffect="non-scaling-stroke"
+                  />
+                );
+              })}
+            </svg>
+          </div>
 
           <div
             ref={starsRef}
@@ -161,6 +224,10 @@ export function ExperienceMap({ overlay }: ExperienceMapProps) {
               {overlay}
             </motion.div>
           ) : null}
+
+          <p className="experience-map__legend" aria-hidden="true">
+            ✦ each star is a live build — go on, click one
+          </p>
         </div>
       </div>
 

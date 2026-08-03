@@ -141,33 +141,33 @@
   height: 15px;
 }
 
-/* Star colours */
+/* Star colours — chart palette */
 
 .star-system__core--warm,
 .star-system__glow--warm {
-  --star-colour: #f2a44b;
+  --star-colour: #d3a874;
 }
 
 .star-system__core--cool,
 .star-system__core--blue,
 .star-system__glow--cool,
 .star-system__glow--blue {
-  --star-colour: #6f9fe8;
+  --star-colour: #8aa8c9;
 }
 
 .star-system__core--cyan,
 .star-system__glow--cyan {
-  --star-colour: #4bc4d5;
+  --star-colour: #8fc1bd;
 }
 
 .star-system__core--violet,
 .star-system__glow--violet {
-  --star-colour: #a879df;
+  --star-colour: #b294c7;
 }
 
 .star-system__core--white,
 .star-system__glow--white {
-  --star-colour: #ffffff;
+  --star-colour: #e9e2cf;
 }
 
 /* Glow */

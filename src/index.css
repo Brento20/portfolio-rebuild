@@ -21,7 +21,7 @@
   height: 620px;
   top: -180px;
   left: -120px;
-  background: rgba(184, 135, 90, 0.42);
+  background: rgba(127, 168, 164, 0.16);
 }
 
 .nebula__cloud--two {
@@ -29,7 +29,7 @@
   height: 700px;
   right: -240px;
   top: 8%;
-  background: rgba(160, 118, 88, 0.38);
+  background: rgba(192, 133, 115, 0.13);
   animation-duration: 30s;
   animation-delay: -8s;
 }
@@ -39,7 +39,7 @@
   height: 560px;
   left: 28%;
   bottom: -250px;
-  background: rgba(120, 92, 72, 0.35);
+  background: rgba(100, 130, 150, 0.14);
   animation-duration: 34s;
   animation-delay: -14s;
 }
@@ -49,7 +49,7 @@
   height: 480px;
   right: 18%;
   top: 35%;
-  background: rgba(140, 110, 180, 0.22);
+  background: rgba(127, 168, 164, 0.1);
   animation-duration: 26s;
   animation-delay: -5s;
 }
@@ -61,7 +61,7 @@
   top: 48%;
   margin-left: -160px;
   margin-top: -160px;
-  background: rgba(255, 210, 160, 0.18);
+  background: rgba(211, 189, 139, 0.1);
   animation-duration: 18s;
   opacity: 0.35;
 }

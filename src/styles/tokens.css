@@ -1,38 +1,78 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap");
+
+/* ============================================================
+   VISUAL LANGUAGE — "The Cartographer's Night"
+
+   Inspired by printed northern-hemisphere star charts and the
+   restraint of code-driven studios (2xA, Obys, Salt & Pepper).
+
+   Tone
+     Scientific, warm, unhurried. Precision without coldness.
+     Hand-drafted chart furniture over a quiet field of stars.
+     Never neon, never purple-glow, never dashboard.
+
+   Palette
+     Ground ……… chart navy #131b24 (deep #10161e · panel #18222d)
+     Ink …………… warm cream #e9e2cf (soft #b5b0a0 · muted #7e8494)
+     Gold ……… chart gold #d3bd8b — primary accent, brightest stars
+     Coral ……… #c08573 — constellation hairlines, timeline
+     Teal ……… #7fa8a4 — graticule, dashed rings, asides
+
+   Type
+     Display …… Cormorant Garamond
+                   · spaced uppercase for plate titles
+                   · italic for asides / subtitles / fig. captions
+     Body ……… DM Sans, 1.5 line-height, never letterspaced
+
+   Texture & mark-making
+     Fine film grain over everything
+     Soft vignette at the edges
+     Hairline rules, corner ticks, dashed circles
+     Magnitude as size — not colour noise
+
+   Motion
+     Slow and continuous (rings 60–160s, camera drift on scroll)
+     Soft approaches on sections (scale 0.96 → 1)
+     Micro: underline-draw, arrow nudge, image lift
+     Prefer-reduced-motion kills ambient animation
+   ============================================================ */
 
 :root {
   --font-sans: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
 
-  --color-bg: #0b0a09;
-  --color-bg-panel: #161311;
+  --color-bg: #131b24;
+  --color-bg-deep: #10161e;
+  --color-bg-panel: #18222d;
 
-  --color-ink: #f4f1ea;
-  --color-ink-soft: #b7afa4;
-  --color-muted: #7d766c;
-  --color-line: rgb(255 255 255 / 9%);
-  --color-line-strong: rgb(255 255 255 / 15%);
-  --color-accent: #d4a574;
-  --color-accent-hover: #e6bd8d;
-  --color-accent-glow: rgb(212 165 116 / 25%);
+  --color-ink: #e9e2cf;
+  --color-ink-soft: #b5b0a0;
+  --color-muted: #7e8494;
 
-  /* type scale — 1.25 ratio anchored at 1rem */
+  --color-line: rgb(233 226 207 / 9%);
+  --color-line-strong: rgb(233 226 207 / 17%);
+
+  --color-accent: #d3bd8b;
+  --color-accent-hover: #e8d6a8;
+  --color-accent-glow: rgb(211 189 139 / 22%);
+  --color-coral: #c08573;
+  --color-teal: #7fa8a4;
+
   --text-xs: 0.6875rem;
   --text-sm: 0.8125rem;
   --text-base: 1rem;
   --text-md: 1.0625rem;
   --text-lg: clamp(1.125rem, 2vw, 1.25rem);
-  --text-title: clamp(1.9rem, 4.6vw, 3rem);
-  --text-hero: clamp(3.4rem, 11vw, 6.5rem);
 
-  --tracking-caps: 0.22em;
+  --tracking-plate: 0.22em;
+  --tracking-caps: 0.16em;
 
   --space-section: clamp(6rem, 14vw, 10rem);
   --space-gutter: clamp(1.25rem, 4vw, 2.75rem);
   --max-content: 68rem;
 
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --radius-lg: 1rem;
+  --radius-lg: 0.75rem;
   --radius-pill: 999px;
 }
 
@@ -65,6 +105,29 @@ body {
   overflow-x: hidden;
 }
 
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  background: radial-gradient(
+    120% 100% at 50% 45%,
+    transparent 55%,
+    rgb(9 13 18 / 55%) 100%
+  );
+}
+
 img,
 svg {
   display: block;
@@ -94,6 +157,6 @@ a:hover {
 }
 
 ::selection {
-  background: rgb(212 165 116 / 30%);
+  background: rgb(211 189 139 / 28%);
   color: var(--color-ink);
 }

@@ -18,8 +18,8 @@ export function Contact() {
           </div>
 
           <SectionHead
-            eyebrow="contact"
             title="Send a signal"
+            subtitle="always happy to talk shop, roles or wild ideas"
             titleId="contact-title"
             align="center"
             lede={<p>{profile.contactLead}</p>}

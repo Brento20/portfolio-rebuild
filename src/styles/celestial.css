@@ -10,7 +10,7 @@
   pointer-events: none;
   background: radial-gradient(
     110% 70% at 50% 0%,
-    #16120e 0%,
+    #17222d 0%,
     var(--color-bg) 60%
   );
 }
@@ -27,7 +27,7 @@
   height: 55vh;
   top: -18%;
   right: -18%;
-  background: rgb(169 116 68 / 9%);
+  background: rgb(192 133 115 / 6%);
 }
 
 .cosmos__nebula--cool {
@@ -35,7 +35,7 @@
   height: 50vh;
   bottom: -22%;
   left: -15%;
-  background: rgb(110 90 160 / 7%);
+  background: rgb(127 168 164 / 6%);
   animation-duration: 75s;
   animation-delay: -20s;
 }
@@ -74,7 +74,7 @@ main {
   background: linear-gradient(
     90deg,
     transparent,
-    rgb(255 255 255 / 85%),
+    rgb(233 226 207 / 70%),
     transparent
   );
   border-radius: 999px;

@@ -17,8 +17,8 @@ export function Intro() {
       <div className="section__inner">
         <Approach>
           <SectionHead
-            eyebrow="about"
             title={profile.introTitle}
+            subtitle={profile.introSubtitle}
             titleId="about-title"
           />
         </Approach>

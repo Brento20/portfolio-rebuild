@@ -6,15 +6,16 @@ export const profile = {
   email: "brenton.weaver@gmail.com",
   phone: "0429 235 614",
   tagline:
-    "Frontend developer building reusable component systems across 200+ production websites.",
+    "I build websites that feel considered — fast, findable, and easy for the people who have to maintain them.",
   heroLead:
-    "I write CSS, LESS, and JavaScript libraries teams can maintain without extra code — with strong Figma handoff, technical SEO, and delivery across competing priorities.",
-  introTitle:
-    "Digital work that connects business goals, user behaviour, and measurable outcomes",
+    "Two hundred–odd production sites taught me that good front-end is a systems problem: components people can update without calling a developer.",
+  introTitle: "Hello, I'm Brenton",
+  introSubtitle:
+    "digital work that connects business goals, user behaviour and measurable outcomes",
   intro: [
-    "Over the past four years at SERV. Agency I progressed from Junior to Senior Web Developer, delivering more than 200 websites across hospitality, architecture, media, dental, professional services, and other B2B industries. My role extended well beyond development: working with account managers, designers, and clients to translate objectives into experiences that improve search visibility, engagement, and conversion.",
-    "A large part of that work is component and design-system thinking — reusable CSS, LESS, and JavaScript patterns used agency-wide, editable by non-technical users, and kept consistent across legacy and new builds. I review designs in Figma, choose lightweight stacks for performance and stability, and support DNS, domains, email services, and post-launch care end to end.",
-    "I enjoy bringing structure to complex problems: clarify the goal, identify what is blocking success, ship a clear approach, then refine from analytics and evidence rather than opinion. Alongside client delivery, I build in React and TypeScript — including a technical SEO audit dashboard — to keep sharpening full-stack skills.",
+    "For the past four years at SERV. Agency I've grown from junior to senior developer, shipping more than 200 websites for restaurants, architects, media companies and just about everyone in between. The job is much bigger than code — I sit with designers, account managers and clients to work out what a business actually needs, then build it properly.",
+    "My favourite problems are systems problems: reusable CSS, LESS and JavaScript components that non-technical folks can update without touching a line of code. I keep around a hundred legacy sites healthy, translate Figma into faithful builds, and look after the unglamorous-but-critical layer — DNS, domains, email, performance.",
+    "Outside client work I build my own tools in React and TypeScript, like a technical SEO dashboard that finds site problems before users do. It keeps me sharp, and honest about my own advice.",
   ],
   highlights: [
     {
@@ -35,31 +36,35 @@ export const profile = {
     },
   ],
   contactLead:
-    "Open to senior front-end roles, freelance builds, and conversations where implementation meets strategy — SEO, performance, accessibility, and landing-page optimisation included.",
+    "Got a role in mind, a project that needs untangling, or just want to talk shop? My inbox is always open.",
   career: [
     {
       period: "2022 — Present",
+      year: "'22",
       role: "Senior Web Developer",
       org: "SERV. Agency",
-      note: "Progressed Junior → Mid → Senior. Built agency-wide CSS/LESS/JS component systems editable by non-technical users; maintained UI consistency across 200+ hospitality, media, dental, and architecture sites; supported up to 100 legacy builds at once. Rising Star and MVP awards.",
+      note: "Came in junior, left the title behind twice. I build the agency's shared component systems — the CSS, LESS and JavaScript patterns every site leans on — and keep design consistent across 200+ builds while supporting up to 100 legacy sites at a time. Picked up the Rising Star and MVP awards along the way.",
     },
     {
       period: "2021 — 2022",
+      year: "'21",
       role: "Full Stack Flex Program",
       org: "University of Sydney · Trilogy",
-      note: "HTML, CSS, JavaScript, TypeScript, React, Node.js, Express, MongoDB, GraphQL — with ongoing General Assembly short courses.",
+      note: "Six intense months of HTML, CSS, JavaScript, TypeScript, React, Node, Express, MongoDB and GraphQL — plus ongoing General Assembly short courses because I can't help myself.",
     },
     {
       period: "2013 — 2022",
+      year: "'13",
       role: "Store Manager · Brand & Product Trainer",
       org: "LUSH Handmade Cosmetics",
-      note: "Led 40+ people across two flagship stores and $5M+ annual revenue — KPI-driven retail, activations, and visual merchandising.",
+      note: "Nine years, two flagship stores, a team of 40+ and $5M+ in annual revenue. Retail taught me the things code can't: reading people, running numbers, and staying calm on the busiest day of the year.",
     },
     {
       period: "2012 — 2013",
+      year: "'12",
       role: "Account Supervisor",
       org: "Cudo (Channel 9)",
-      note: "Merchant onboarding and delivery on a high-traffic ecommerce platform.",
+      note: "Merchant onboarding and delivery on a high-traffic ecommerce platform — my first taste of the web at scale.",
     },
   ],
   toolkit: [

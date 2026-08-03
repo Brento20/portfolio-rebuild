@@ -11,14 +11,19 @@ const stagger = {
 };
 
 const rise = {
-  initial: { opacity: 0, y: 30 },
+  initial: { opacity: 0, y: 28 },
   animate: {
     opacity: 1,
     y: 0,
-    transition: { duration: 1, ease: enterEase },
+    transition: { duration: 1.05, ease: enterEase },
   },
 };
 
+/*
+  Quiet studio landing — left-locked type, breathing room,
+  the three.js field does the heavy lifting. Inspired by
+  2xA: systems over furniture, confidence over decoration.
+*/
 export function Hero() {
   const reduceMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
@@ -28,9 +33,8 @@ export function Hero() {
     offset: ["start start", "end start"],
   });
 
-  const copyY = useTransform(scrollYProgress, [0, 1], [0, 110]);
-  const copyOpacity = useTransform(scrollYProgress, [0, 0.65], [1, 0]);
-  const ringsY = useTransform(scrollYProgress, [0, 1], [0, 170]);
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, 80]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.55], [1, 0]);
 
   return (
     <section
@@ -40,70 +44,50 @@ export function Hero() {
       aria-labelledby="hero-title"
     >
       <motion.div
-        className="hero__rings"
-        aria-hidden="true"
-        style={reduceMotion ? undefined : { y: ringsY }}
-      >
-        <span className="hero__ring hero__ring--one" />
-        <span className="hero__ring hero__ring--two" />
-        <span className="hero__ring hero__ring--three" />
-        <span className="hero__ring-planet" />
-      </motion.div>
-
-      <motion.div
-        className="hero__frame"
-        style={reduceMotion ? undefined : { y: copyY, opacity: copyOpacity }}
+        className="hero__content"
+        style={
+          reduceMotion ? undefined : { y: contentY, opacity: contentOpacity }
+        }
         variants={reduceMotion ? undefined : stagger}
         initial={reduceMotion ? false : "initial"}
         animate={reduceMotion ? undefined : "animate"}
       >
-        <motion.header className="hero__meta" variants={rise}>
-          <span className="hero__meta-item">33.8688°S&thinsp;/&thinsp;151.2093°E</span>
-          <span className="hero__meta-item hero__meta-item--wide">
-            {profile.role} — {profile.roleDetail}
-          </span>
-          <span className="hero__meta-item hero__meta-status">
-            <span className="hero__meta-pulse" aria-hidden="true" />
-            Open to opportunities
-          </span>
-        </motion.header>
+        <motion.p className="hero__kicker" variants={rise}>
+          <span className="hero__kicker-dot" aria-hidden="true" />
+          {profile.location} · {profile.role}
+        </motion.p>
 
         <motion.h1 className="hero__title" id="hero-title" variants={rise}>
-          <span className="hero__title-line">Brenton</span>
-          <span className="hero__title-line hero__title-line--offset">
-            <em>Weaver</em>
-          </span>
+          Brenton
+          <br />
+          <em>Weaver</em>
         </motion.h1>
 
-        <motion.div className="hero__foot" variants={rise}>
-          <p className="hero__lead">{profile.tagline}</p>
+        <motion.p className="hero__lead" variants={rise}>
+          {profile.tagline}
+        </motion.p>
 
-          <div className="hero__actions">
-            <a className="btn btn--solid" href="#experience">
-              Explore the work
-            </a>
-            <a className="btn btn--line" href="#contact">
-              Get in touch
-              <span className="btn__arrow" aria-hidden="true">
-                →
-              </span>
-            </a>
-          </div>
+        <motion.div className="hero__actions" variants={rise}>
+          <a className="btn btn--solid" href="#experience">
+            See the work
+            <span className="btn__arrow" aria-hidden="true">
+              ↓
+            </span>
+          </a>
+          <a className="btn btn--line" href="#contact">
+            Say hello
+            <span className="btn__arrow" aria-hidden="true">
+              ↗
+            </span>
+          </a>
         </motion.div>
       </motion.div>
 
-      <motion.a
-        className="hero__scroll"
-        href="#about"
-        aria-label="Scroll to about section"
-        initial={reduceMotion ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.6, duration: 1 }}
-      >
-        <span className="hero__scroll-line" aria-hidden="true" />
-      </motion.a>
-
-      <div className="hero__horizon" aria-hidden="true" />
+      <div className="hero__aside" aria-hidden="true">
+        <span className="hero__aside-ring" />
+        <span className="hero__aside-ring hero__aside-ring--dashed" />
+        <span className="hero__aside-planet" />
+      </div>
     </section>
   );
 }
