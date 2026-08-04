@@ -1,4 +1,5 @@
 import { CosmosBackground } from "./components/celestial/CosmosBackground";
+import { SiteDocumentHead } from "./components/seo/SiteDocumentHead";
 import { Career } from "./components/sections/Career";
 import { Contact } from "./components/sections/Contact";
 import { ExperienceSection } from "./components/sections/ExperienceSection";
@@ -10,6 +11,7 @@ import { profile } from "./data/profile";
 function App() {
   return (
     <>
+      <SiteDocumentHead />
       <CosmosBackground />
       <main>
         <Hero />
