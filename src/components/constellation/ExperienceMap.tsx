@@ -15,6 +15,19 @@ interface ExperienceMapProps {
   overlay?: ReactNode;
 }
 
+/** Project stars joined the way a printed chart draws the figure. */
+const constellationFigure: [string, string][] = [
+  ["medley-kangaroo-point", "akiba"],
+  ["akiba", "darling-glebe"],
+  ["akiba", "girdlers"],
+  ["darling-glebe", "girdlers"],
+  ["girdlers", "website-audit-dashboard"],
+  ["website-audit-dashboard", "studio-gaxa"],
+  ["studio-gaxa", "huzzah"],
+  ["huzzah", "medley-kangaroo-point"],
+  ["studio-gaxa", "medley-kangaroo-point"],
+];
+
 /*
   Parallax is scoped to the map: it responds to the pointer moving
   across the field itself, easing back to rest when the pointer leaves.
@@ -26,6 +39,7 @@ export function ExperienceMap({ overlay }: ExperienceMapProps) {
   const canvasRef = useRef<HTMLDivElement>(null);
   const nebulaRef = useRef<HTMLDivElement>(null);
   const backgroundRef = useRef<HTMLDivElement>(null);
+  const linesRef = useRef<HTMLDivElement>(null);
   const starsRef = useRef<HTMLDivElement>(null);
   const labelsRef = useRef<HTMLDivElement>(null);
 
@@ -66,10 +80,11 @@ export function ExperienceMap({ overlay }: ExperienceMapProps) {
         el.style.transform = `translate3d(${currentX * amount}px, ${currentY * amount}px, 0)`;
       };
 
-      move(nebulaRef.current, 10);
-      move(backgroundRef.current, 18);
-      move(starsRef.current, 30);
-      move(labelsRef.current, 38);
+      move(nebulaRef.current, 8);
+      move(backgroundRef.current, 14);
+      move(linesRef.current, 22);
+      move(starsRef.current, 28);
+      move(labelsRef.current, 34);
 
       frame = requestAnimationFrame(animate);
     };
@@ -101,9 +116,50 @@ export function ExperienceMap({ overlay }: ExperienceMapProps) {
             <span className="experience-map__ring experience-map__ring--one" />
             <span className="experience-map__ring experience-map__ring--two" />
             <span className="experience-map__ring experience-map__ring--three" />
+            <span className="experience-map__axis experience-map__axis--h" />
+            <span className="experience-map__axis experience-map__axis--v" />
           </div>
 
-          <ShootingStars count={5} />
+          <div ref={linesRef} className="experience-map__layer experience-map__layer--figure">
+            <svg
+              className="experience-map__lines"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              {constellationFigure.map(([a, b]) => {
+                const from = projectLayout[a];
+                const to = projectLayout[b];
+                if (!from || !to) return null;
+
+                const isLit =
+                  hasSelection &&
+                  (selectedProject?.id === a || selectedProject?.id === b);
+
+                return (
+                  <line
+                    key={`${a}-${b}`}
+                    className={[
+                      "experience-map__line",
+                      isLit ? "experience-map__line--lit" : "",
+                      hasSelection && !isLit
+                        ? "experience-map__line--faded"
+                        : "",
+                    ]
+                      .filter(Boolean)
+                      .join(" ")}
+                    x1={from.x}
+                    y1={from.y}
+                    x2={to.x}
+                    y2={to.y}
+                    vectorEffect="non-scaling-stroke"
+                  />
+                );
+              })}
+            </svg>
+          </div>
+
+          <ShootingStars count={3} />
 
           <div
             ref={starsRef}
@@ -167,6 +223,37 @@ export function ExperienceMap({ overlay }: ExperienceMapProps) {
               {overlay}
             </motion.div>
           ) : null}
+
+          <div className="experience-map__rim" aria-hidden="true">
+            <span className="experience-map__edge experience-map__edge--north">
+              05<sup>h</sup> 12<sup>m</sup> – 06<sup>h</sup> 48<sup>m</sup>
+            </span>
+            <span className="experience-map__edge experience-map__edge--south">
+              −34° – −28°
+            </span>
+            <span className="experience-map__edge experience-map__edge--west">
+              Fig. 1
+            </span>
+            <span className="experience-map__edge experience-map__edge--east">
+              Scale 1:1
+            </span>
+          </div>
+
+          <div className="experience-map__legend" aria-hidden="true">
+            <span className="experience-map__legend-title">Magnitude</span>
+            <span className="experience-map__legend-row">
+              <span className="experience-map__legend-star experience-map__legend-star--1" />
+              1.0
+            </span>
+            <span className="experience-map__legend-row">
+              <span className="experience-map__legend-star experience-map__legend-star--2" />
+              2.5
+            </span>
+            <span className="experience-map__legend-row">
+              <span className="experience-map__legend-star experience-map__legend-star--3" />
+              4.0
+            </span>
+          </div>
 
           <div className="experience-map__frame" aria-hidden="true">
             <span className="experience-map__tick experience-map__tick--tl" />
