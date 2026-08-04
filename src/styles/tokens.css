@@ -25,6 +25,10 @@
   --color-accent-cool-hover: #8ebab5;
   --color-accent-cool-glow: rgb(111 156 151 / 25%);
 
+  /* printed-chart figure lines (warm ink on navy) */
+  --color-chart-figure: rgb(196 154 122 / 42%);
+  --color-chart-figure-lit: rgb(212 165 116 / 72%);
+
   /* type scale — 1.25 ratio anchored at 1rem */
   --text-xs: 0.6875rem;
   --text-sm: 0.8125rem;
@@ -35,6 +39,7 @@
   --text-hero: clamp(3.4rem, 11vw, 6.5rem);
 
   --tracking-caps: 0.22em;
+  --tracking-plate: 0.18em;
 
   --space-section: clamp(6rem, 14vw, 10rem);
   --space-gutter: clamp(1.25rem, 4vw, 2.75rem);

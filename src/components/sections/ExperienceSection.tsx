@@ -11,13 +11,14 @@ export function ExperienceSection() {
       <ExperienceMap
         overlay={
           <SectionHead
-            eyebrow="selected work"
-            title="A constellation of recent builds"
+            eyebrow="Plate II · Selected work"
+            title="Weaver · recent builds"
             titleId="experience-title"
-            className="experience-section__head"
+            className="experience-section__head section-head--chart"
             lede={
               <p className="experience-section__hint">
-                Each star is a live project — select one to open its story
+                Figure traced in the southern sky — select a star to read the
+                field notes
               </p>
             }
           />
