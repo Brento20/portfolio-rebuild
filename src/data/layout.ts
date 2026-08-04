@@ -11,5 +11,6 @@ export const projectLayout: Record<string, ChartPositionPercent> = {
   "studio-gaxa": { x: 34, y: 58 },
   huzzah: { x: 11, y: 48 },
   "darling-glebe": { x: 84, y: 26 },
+  "vogue-cafe": { x: 58, y: 20 },
   "website-audit-dashboard": { x: 52, y: 74 },
 };

@@ -313,6 +313,68 @@ export const projects: Project[] = [
     },
   },
   {
+    id: "vogue-cafe",
+    image: "/projects/vogue-cafe.jpg",
+    title: "Vogue Cafe Sydney",
+    url: "https://voguecafe.au/",
+    location: "Darling Harbour, Sydney, NSW",
+    category: "Client Website",
+    summary:
+      "Waterfront dining site for Vogue Cafe on Darling Harbour — modern Australian seafood, high tea, private events, and reservations beneath W Sydney. Built on Squarespace with custom LESS and JavaScript, Figma-led polish, and technical SEO tuned for menus, functions, and harbour-side occasion landing pages.",
+    industries: ["Hospitality", "Restaurants", "Events"],
+    capabilities: [
+      "CSS and LESS Styling",
+      "Custom JavaScript",
+      "Figma Collaboration",
+      "Technical SEO",
+      "Domain Support",
+    ],
+    technologies: ["Squarespace", "LESS", "JavaScript", "Figma", "HTML", "CSS"],
+    featured: true,
+    profile: {
+      design: 9,
+      development: 8,
+      seo: 8,
+      accessibility: 7,
+      infrastructure: 5,
+      performance: 7,
+      cms: 8,
+      strategy: 8,
+    },
+    star: {
+      size: "large",
+      glow: "warm",
+      orbits: [
+        {
+          radius: 24,
+          ellipse: 1.2,
+          tilt: -8,
+          duration: 13,
+          direction: "clockwise",
+          satellites: [
+            {
+              size: 4,
+              angle: 0,
+            },
+          ],
+        },
+        {
+          radius: 34,
+          ellipse: 1.5,
+          tilt: 18,
+          duration: 19,
+          direction: "counterclockwise",
+          satellites: [
+            {
+              size: 2,
+              angle: 120,
+            },
+          ],
+        },
+      ],
+    },
+  },
+  {
     id: "website-audit-dashboard",
     image: "/projects/website-audit-dashboard.jpg",
     title: "Website Audit Dashboard",
