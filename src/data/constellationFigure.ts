@@ -5,7 +5,9 @@
 export const projectConstellationEdges: [string, string][] = [
   ["medley-kangaroo-point", "akiba"],
   ["akiba", "darling-glebe"],
-  ["akiba", "girdlers"],
+  ["akiba", "vogue-cafe"],
+  ["vogue-cafe", "darling-glebe"],
+  ["vogue-cafe", "girdlers"],
   ["darling-glebe", "girdlers"],
   ["girdlers", "website-audit-dashboard"],
   ["website-audit-dashboard", "studio-gaxa"],

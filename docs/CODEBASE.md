@@ -18,7 +18,8 @@ This document describes where code lives, naming conventions, and how to change 
 | `src/components/constellation/` | Interactive star chart + star systems. |
 | `src/components/celestial/` | Three.js background, scroll motion helpers. |
 | `src/components/project/` | Project detail drawer. |
-| `src/hooks/` | Reusable React hooks (see below). |
+| `src/config/site.ts` | SEO copy, `VITE_SITE_URL`, OG paths (keep aligned with `index.html`). |
+| `src/components/seo/` | Runtime meta updates when env URL is set. |
 | `src/theme/` | Reading CSS variables from JavaScript (Three.js colours). |
 | `src/constants/` | Shared constants (motion easing, CSS variable names). |
 
