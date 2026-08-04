@@ -1,4 +1,29 @@
 /* ============================================================
+   Accessibility — skip link
+   ============================================================ */
+
+.skip-link {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 10000;
+  padding: 0.65rem 1rem;
+  border-radius: 2px;
+  background: var(--color-bg-panel);
+  color: var(--color-ink);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 0 0 2px var(--color-accent);
+  transform: translateY(-200%);
+  transition: transform 200ms var(--ease-out);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* ============================================================
    Layout primitives
    ============================================================ */
 

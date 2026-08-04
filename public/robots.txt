@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Replace the host below when you set a custom domain (must match VITE_SITE_URL).
+Sitemap: https://brento20.github.io/portfolio-rebuild/sitemap.xml
