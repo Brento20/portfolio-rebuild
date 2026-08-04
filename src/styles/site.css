@@ -145,7 +145,7 @@
 /* outlined — fills with gold on hover */
 
 .btn--solid {
-  border-color: rgb(212 165 116 / 55%);
+  border-color: var(--color-accent-soft);
   color: var(--color-accent);
   background: transparent;
 }
@@ -154,7 +154,7 @@
   background: var(--color-accent);
   border-color: var(--color-accent);
   color: var(--color-ink-on-accent);
-  box-shadow: 0 0 36px rgb(212 165 116 / 25%);
+  box-shadow: 0 0 36px var(--color-accent-glow);
 }
 
 /* text link — underline draws in */
@@ -202,7 +202,7 @@
 
 .hero__ring {
   position: absolute;
-  border: 1px solid rgb(255 255 255 / 7%);
+  border: 1px solid var(--color-line-white-soft);
   border-radius: 50%;
 }
 
@@ -216,14 +216,14 @@
   width: 100%;
   aspect-ratio: 1;
   border-style: dashed;
-  border-color: rgb(255 255 255 / 5%);
+  border-color: var(--color-line-white-faint);
   animation: hero-ring-spin 140s linear infinite reverse;
 }
 
 .hero__ring--three {
   width: 48%;
   aspect-ratio: 1;
-  border-color: rgb(212 165 116 / 16%);
+  border-color: var(--color-accent-muted);
   animation: hero-ring-spin 60s linear infinite;
 }
 
@@ -274,7 +274,7 @@
   position: absolute;
   width: 1.25rem;
   height: 1.25rem;
-  border: 0 solid rgb(111 156 151 / 35%);
+  border: 0 solid var(--color-accent-cool-tick);
   pointer-events: none;
 }
 
@@ -673,8 +673,8 @@
     ),
     var(--color-bg);
   box-shadow:
-    inset 0 0 0 1px rgb(255 255 255 / 6%),
-    inset 0 0 0 2px rgb(212 165 116 / 12%),
+    inset 0 0 0 1px var(--color-line),
+    inset 0 0 0 2px var(--color-accent-plate),
     inset 0 0 120px rgb(6 9 16 / 65%);
 }
 
@@ -702,17 +702,17 @@
 
 .experience-map__ring--two {
   width: min(68vw, 50rem);
-  border: 1px dashed rgb(111 156 151 / 28%);
+  border: 1px dashed var(--color-accent-cool-dashed);
 }
 
 .experience-map__ring--three {
   width: min(92vw, 68rem);
-  border: 1px solid rgb(255 255 255 / 5%);
+  border: 1px solid var(--color-line-white-faint);
 }
 
 .experience-map__axis {
   position: absolute;
-  background: rgb(111 156 151 / 22%);
+  background: var(--color-accent-cool-glow);
 }
 
 .experience-map__axis--h {
@@ -721,8 +721,8 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgb(111 156 151 / 35%) 12%,
-    rgb(111 156 151 / 35%) 88%,
+    var(--color-accent-cool-line) 12%,
+    var(--color-accent-cool-line) 88%,
     transparent
   );
 }
@@ -733,8 +733,8 @@
   background: linear-gradient(
     180deg,
     transparent,
-    rgb(111 156 151 / 32%) 10%,
-    rgb(111 156 151 / 32%) 90%,
+    var(--color-accent-cool-line) 10%,
+    var(--color-accent-cool-line) 90%,
     transparent
   );
 }
@@ -781,7 +781,7 @@
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgb(183 175 164 / 55%);
+  color: var(--color-ink-faint);
 }
 
 .experience-map__edge {
@@ -829,7 +829,7 @@
   gap: 0.35rem;
   padding: 0.65rem 0.75rem;
   border: 1px solid var(--color-line);
-  background: rgb(10 15 26 / 72%);
+  background: var(--color-bg-overlay);
   font-family: var(--font-mono);
   font-size: 0.5625rem;
   letter-spacing: 0.12em;

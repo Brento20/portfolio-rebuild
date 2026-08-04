@@ -27,7 +27,7 @@
   height: 55vh;
   top: -18%;
   right: -18%;
-  background: rgb(169 116 68 / 9%);
+  background: var(--color-cosmos-nebula-warm);
 }
 
 .cosmos__nebula--cool {
@@ -35,7 +35,7 @@
   height: 50vh;
   bottom: -22%;
   left: -15%;
-  background: rgb(111 156 151 / 8%);
+  background: var(--color-cosmos-nebula-cool);
   animation-duration: 75s;
   animation-delay: -20s;
 }

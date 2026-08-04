@@ -2,7 +2,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion
 import { useRef } from "react";
 import { profile } from "../../data/profile";
 
-const enterEase = [0.22, 1, 0.36, 1] as const;
+import { motionEaseOut } from "../../constants/motion";
 
 const stagger = {
   animate: {
@@ -15,7 +15,7 @@ const rise = {
   animate: {
     opacity: 1,
     y: 0,
-    transition: { duration: 1, ease: enterEase },
+    transition: { duration: 1, ease: motionEaseOut },
   },
 };
 

@@ -1,11 +1,10 @@
-interface Position {
-  /** 0–100, horizontal placement in the experience viewport */
+/** Percentage placement (0–100) on the experience map canvas. */
+export interface ChartPositionPercent {
   x: number;
-  /** 0–100, vertical placement in the experience viewport */
   y: number;
 }
 
-export const projectLayout: Record<string, Position> = {
+export const projectLayout: Record<string, ChartPositionPercent> = {
   "medley-kangaroo-point": { x: 17, y: 24 },
   akiba: { x: 44, y: 14 },
   girdlers: { x: 72, y: 36 },
