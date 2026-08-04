@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { motionEaseOut } from "../../constants/motion";
+import { useBodyScrollLock } from "../../hooks/useBodyScrollLock";
 import type { Project } from "../../types/project";
-
-const drawerEase = [0.22, 1, 0.36, 1] as const;
 
 interface ProjectDrawerProps {
   project: Project | null;
@@ -10,24 +10,25 @@ interface ProjectDrawerProps {
 }
 
 export function ProjectDrawer({ project, onClose }: ProjectDrawerProps) {
-  const reduceMotion = useReducedMotion();
+  const prefersReducedMotion = useReducedMotion();
+
+  useBodyScrollLock(project !== null);
 
   useEffect(() => {
-    if (!project) return;
+    if (!project) {
+      return;
+    }
 
-    const onKeyDown = (event: KeyboardEvent) => {
+    const onEscapeKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         onClose();
       }
     };
 
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", onKeyDown);
+    window.addEventListener("keydown", onEscapeKey);
 
     return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("keydown", onEscapeKey);
     };
   }, [project, onClose]);
 
@@ -42,7 +43,7 @@ export function ProjectDrawer({ project, onClose }: ProjectDrawerProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: reduceMotion ? 0 : 0.25 }}
+            transition={{ duration: prefersReducedMotion ? 0 : 0.25 }}
             onClick={onClose}
           />
 
@@ -51,10 +52,10 @@ export function ProjectDrawer({ project, onClose }: ProjectDrawerProps) {
             aria-label={`${project.title} project details`}
             role="dialog"
             aria-modal="true"
-            initial={reduceMotion ? false : { y: "104%" }}
+            initial={prefersReducedMotion ? false : { y: "104%" }}
             animate={{ y: 0 }}
-            exit={reduceMotion ? undefined : { y: "104%" }}
-            transition={{ duration: 0.45, ease: drawerEase }}
+            exit={prefersReducedMotion ? undefined : { y: "104%" }}
+            transition={{ duration: 0.45, ease: motionEaseOut }}
           >
             <button
               type="button"

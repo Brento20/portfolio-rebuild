@@ -10,7 +10,7 @@ interface StarSystemProps {
   usePercent?: boolean;
   isActive: boolean;
   isDimmed?: boolean;
-  onClick: () => void;
+  onSelect: () => void;
 }
 
 export function StarSystem({
@@ -20,7 +20,7 @@ export function StarSystem({
   usePercent = false,
   isActive,
   isDimmed = false,
-  onClick,
+  onSelect,
 }: StarSystemProps) {
   const isFeatured = project.featured;
 
@@ -35,7 +35,7 @@ export function StarSystem({
       ]
         .filter(Boolean)
         .join(" ")}
-      onClick={onClick}
+      onClick={onSelect}
       aria-label={`Open ${project.title}`}
       aria-pressed={isActive}
       style={{

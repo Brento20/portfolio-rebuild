@@ -1,35 +1,96 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap");
 
-:root {
-  --font-sans: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: "Instrument Serif", Georgia, "Times New Roman", serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+/*
+  ═══════════════════════════════════════════════════════════════
+  DESIGN TOKENS — change fonts and brand colours here only
+  ═══════════════════════════════════════════════════════════════
 
-  /* deep-field navy, lifted from the reference star chart's sky tone */
+  Typography
+    --body-font     … paragraphs, UI, buttons (same idea as “bodyFont” in code)
+    --heading-font  … titles, display (“headingFont”)
+    --code-font     … mono / plate labels
+
+  The --font-sans / --font-display / --font-mono aliases keep older
+  CSS working; prefer the three names above for new styles.
+  ═══════════════════════════════════════════════════════════════
+*/
+
+:root {
+  --body-font: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --heading-font: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --code-font: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo,
+    monospace;
+
+  --font-sans: var(--body-font);
+  --font-display: var(--heading-font);
+  --font-mono: var(--code-font);
+
+  /* Surfaces */
   --color-bg: #0a0f1a;
   --color-bg-deep: #060910;
   --color-bg-panel: #131d2c;
+  --color-bg-overlay: rgb(10 15 26 / 72%);
+  --color-bg-drawer: rgb(14 19 28 / 97%);
 
+  /* Text */
   --color-ink: #f4f1ea;
   --color-ink-soft: #b7afa4;
-  --color-muted: #7d766c;
+  --color-ink-muted: #7d766c;
+  --color-ink-on-accent: #0c1119;
+  --color-ink-faint: rgb(183 175 164 / 55%);
+
+  /* Legacy alias */
+  --color-muted: var(--color-ink-muted);
+
+  /* Lines & borders */
   --color-line: rgb(255 255 255 / 9%);
   --color-line-strong: rgb(255 255 255 / 15%);
+  --color-line-white-soft: rgb(255 255 255 / 7%);
+  --color-line-white-faint: rgb(255 255 255 / 5%);
+  --color-line-white-dashed: rgb(255 255 255 / 6%);
+
+  /* Warm accent (chart gold) */
   --color-accent: #d4a574;
   --color-accent-hover: #e6bd8d;
   --color-accent-glow: rgb(212 165 116 / 25%);
-  --color-ink-on-accent: #0c1119;
+  --color-accent-soft: rgb(212 165 116 / 55%);
+  --color-accent-muted: rgb(212 165 116 / 16%);
+  --color-accent-border: rgb(212 165 116 / 45%);
+  --color-accent-plate: rgb(212 165 116 / 12%);
+  --color-accent-horizon: rgb(212 165 116 / 35%);
 
-  /* ecliptic teal — secondary accent for hairlines, coordinates, instrument marks */
+  /* Cool accent (ecliptic teal — hairlines, coordinates) */
   --color-accent-cool: #6f9c97;
   --color-accent-cool-hover: #8ebab5;
   --color-accent-cool-glow: rgb(111 156 151 / 25%);
+  --color-accent-cool-line: rgb(111 156 151 / 35%);
+  --color-accent-cool-dashed: rgb(111 156 151 / 28%);
+  --color-accent-cool-tick: rgb(111 156 151 / 35%);
 
-  /* printed-chart figure lines (warm ink on navy) */
+  /* Constellation figure ink */
   --color-chart-figure: rgb(196 154 122 / 42%);
   --color-chart-figure-lit: rgb(212 165 116 / 72%);
 
-  /* type scale — 1.25 ratio anchored at 1rem */
+  /* Stars & nebula (2D map + Three.js — JS reads these via cssVariables.ts) */
+  --color-star-bright: #ffffff;
+  --color-star-ink: var(--color-ink);
+  --color-star-accent: var(--color-accent);
+  --color-nebula-warm: rgb(184 135 90 / 42%);
+  --color-nebula-warm-mid: rgb(160 118 88 / 38%);
+  --color-nebula-warm-deep: rgb(120 92 72 / 35%);
+  --color-nebula-violet: rgb(140 110 180 / 22%);
+  --color-nebula-core: rgb(255 210 160 / 18%);
+  --color-cosmos-nebula-warm: rgb(169 116 68 / 9%);
+  --color-cosmos-nebula-cool: rgb(111 156 151 / 8%);
+
+  /* Project star spectral colours (star-system.css) */
+  --color-star-spectral-warm: #f2a44b;
+  --color-star-spectral-cool: #6f9fe8;
+  --color-star-spectral-cyan: #4bc4d5;
+  --color-star-spectral-violet: #a879df;
+  --color-star-spectral-white: #ffffff;
+
+  /* Type scale */
   --text-xs: 0.6875rem;
   --text-sm: 0.8125rem;
   --text-base: 1rem;
@@ -69,7 +130,7 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: var(--font-sans);
+  font-family: var(--body-font);
   font-size: 1rem;
   line-height: 1.5;
   color: var(--color-ink);
@@ -79,7 +140,6 @@ body {
   overflow-x: hidden;
 }
 
-/* whole-page film grain — sits above every layer, blend-mode keeps it from ever reading as dirt */
 body::after {
   content: "";
   position: fixed;

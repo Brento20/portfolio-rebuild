@@ -1,115 +1,65 @@
 import type { ReactNode } from "react";
-import { useEffect, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { projects } from "../../data/projects";
+import { projectConstellationEdges } from "../../data/constellationFigure";
 import { projectLayout } from "../../data/layout";
+import { projects } from "../../data/projects";
+import { useMapPointerParallax } from "../../hooks/useMapPointerParallax";
 import type { Project } from "../../types/project";
 import { ShootingStars } from "../celestial/ShootingStars";
 import { ProjectDrawer } from "../project/ProjectDrawer";
-import { StarSystem } from "./StarSystem/StarSystem";
 import { Label } from "./StarSystem/Label";
-import { Starfield } from "./Starfield";
+import { StarSystem } from "./StarSystem/StarSystem";
 import { Nebula } from "./Nebula";
+import { Starfield } from "./Starfield";
 
 interface ExperienceMapProps {
   overlay?: ReactNode;
 }
 
-/** Project stars joined the way a printed chart draws the figure. */
-const constellationFigure: [string, string][] = [
-  ["medley-kangaroo-point", "akiba"],
-  ["akiba", "darling-glebe"],
-  ["akiba", "girdlers"],
-  ["darling-glebe", "girdlers"],
-  ["girdlers", "website-audit-dashboard"],
-  ["website-audit-dashboard", "studio-gaxa"],
-  ["studio-gaxa", "huzzah"],
-  ["huzzah", "medley-kangaroo-point"],
-  ["studio-gaxa", "medley-kangaroo-point"],
-];
-
-/*
-  Parallax is scoped to the map: it responds to the pointer moving
-  across the field itself, easing back to rest when the pointer leaves.
-*/
 export function ExperienceMap({ overlay }: ExperienceMapProps) {
-  const [selectedProject, setSelectedProject] =
-    useState<Project | null>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(
+    null,
+  );
 
   const canvasRef = useRef<HTMLDivElement>(null);
-  const nebulaRef = useRef<HTMLDivElement>(null);
-  const backgroundRef = useRef<HTMLDivElement>(null);
-  const linesRef = useRef<HTMLDivElement>(null);
-  const starsRef = useRef<HTMLDivElement>(null);
-  const labelsRef = useRef<HTMLDivElement>(null);
+  const nebulaLayerRef = useRef<HTMLDivElement>(null);
+  const backgroundLayerRef = useRef<HTMLDivElement>(null);
+  const figureLinesLayerRef = useRef<HTMLDivElement>(null);
+  const starSystemsLayerRef = useRef<HTMLDivElement>(null);
+  const labelsLayerRef = useRef<HTMLDivElement>(null);
 
-  const reduceMotion = useReducedMotion();
+  const prefersReducedMotion = useReducedMotion();
 
-  useEffect(() => {
-    if (reduceMotion) return;
+  const parallaxLayers = useMemo(
+    () => [
+      { elementRef: nebulaLayerRef, parallaxDepth: 8 },
+      { elementRef: backgroundLayerRef, parallaxDepth: 14 },
+      { elementRef: figureLinesLayerRef, parallaxDepth: 22 },
+      { elementRef: starSystemsLayerRef, parallaxDepth: 28 },
+      { elementRef: labelsLayerRef, parallaxDepth: 34 },
+    ],
+    [],
+  );
 
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+  useMapPointerParallax(
+    canvasRef,
+    parallaxLayers,
+    prefersReducedMotion !== true,
+  );
 
-    let targetX = 0;
-    let targetY = 0;
-    let currentX = 0;
-    let currentY = 0;
-    let frame = 0;
-
-    const handleMove = (event: PointerEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      targetX = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
-      targetY = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
-    };
-
-    const handleLeave = () => {
-      targetX = 0;
-      targetY = 0;
-    };
-
-    canvas.addEventListener("pointermove", handleMove, { passive: true });
-    canvas.addEventListener("pointerleave", handleLeave);
-
-    const animate = () => {
-      currentX += (targetX - currentX) * 0.045;
-      currentY += (targetY - currentY) * 0.045;
-
-      const move = (el: HTMLDivElement | null, amount: number) => {
-        if (!el) return;
-        el.style.transform = `translate3d(${currentX * amount}px, ${currentY * amount}px, 0)`;
-      };
-
-      move(nebulaRef.current, 8);
-      move(backgroundRef.current, 14);
-      move(linesRef.current, 22);
-      move(starsRef.current, 28);
-      move(labelsRef.current, 34);
-
-      frame = requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    return () => {
-      cancelAnimationFrame(frame);
-      canvas.removeEventListener("pointermove", handleMove);
-      canvas.removeEventListener("pointerleave", handleLeave);
-    };
-  }, [reduceMotion]);
-
-  const hasSelection = selectedProject !== null;
+  const hasSelectedProject = selectedProject !== null;
 
   return (
     <>
       <div className="experience-map">
         <div className="experience-map__canvas" ref={canvasRef}>
-          <div ref={nebulaRef} className="experience-map__layer">
+          <div ref={nebulaLayerRef} className="experience-map__layer">
             <Nebula />
           </div>
 
-          <div ref={backgroundRef} className="experience-map__layer">
-            <Starfield count={1100} />
+          <div ref={backgroundLayerRef} className="experience-map__layer">
+            <Starfield starCount={1100} />
           </div>
 
           <div className="experience-map__graticule" aria-hidden="true">
@@ -120,56 +70,66 @@ export function ExperienceMap({ overlay }: ExperienceMapProps) {
             <span className="experience-map__axis experience-map__axis--v" />
           </div>
 
-          <div ref={linesRef} className="experience-map__layer experience-map__layer--figure">
+          <div
+            ref={figureLinesLayerRef}
+            className="experience-map__layer experience-map__layer--figure"
+          >
             <svg
               className="experience-map__lines"
               viewBox="0 0 100 100"
               preserveAspectRatio="none"
               aria-hidden="true"
             >
-              {constellationFigure.map(([a, b]) => {
-                const from = projectLayout[a];
-                const to = projectLayout[b];
-                if (!from || !to) return null;
+              {projectConstellationEdges.map(
+                ([fromProjectId, toProjectId]) => {
+                  const fromPosition = projectLayout[fromProjectId];
+                  const toPosition = projectLayout[toProjectId];
+                  if (!fromPosition || !toPosition) {
+                    return null;
+                  }
 
-                const isLit =
-                  hasSelection &&
-                  (selectedProject?.id === a || selectedProject?.id === b);
+                  const isEdgeHighlighted =
+                    hasSelectedProject &&
+                    (selectedProject?.id === fromProjectId ||
+                      selectedProject?.id === toProjectId);
 
-                return (
-                  <line
-                    key={`${a}-${b}`}
-                    className={[
-                      "experience-map__line",
-                      isLit ? "experience-map__line--lit" : "",
-                      hasSelection && !isLit
-                        ? "experience-map__line--faded"
-                        : "",
-                    ]
-                      .filter(Boolean)
-                      .join(" ")}
-                    x1={from.x}
-                    y1={from.y}
-                    x2={to.x}
-                    y2={to.y}
-                    vectorEffect="non-scaling-stroke"
-                  />
-                );
-              })}
+                  return (
+                    <line
+                      key={`${fromProjectId}-${toProjectId}`}
+                      className={[
+                        "experience-map__line",
+                        isEdgeHighlighted ? "experience-map__line--lit" : "",
+                        hasSelectedProject && !isEdgeHighlighted
+                          ? "experience-map__line--faded"
+                          : "",
+                      ]
+                        .filter(Boolean)
+                        .join(" ")}
+                      x1={fromPosition.x}
+                      y1={fromPosition.y}
+                      x2={toPosition.x}
+                      y2={toPosition.y}
+                      vectorEffect="non-scaling-stroke"
+                    />
+                  );
+                },
+              )}
             </svg>
           </div>
 
           <ShootingStars count={3} />
 
           <div
-            ref={starsRef}
+            ref={starSystemsLayerRef}
             className="experience-map__layer experience-map__layer--systems"
           >
             {projects.map((project) => {
               const position = projectLayout[project.id];
-              if (!position) return null;
+              if (!position) {
+                return null;
+              }
 
-              const isActive = selectedProject?.id === project.id;
+              const isProjectActive = selectedProject?.id === project.id;
 
               return (
                 <StarSystem
@@ -178,9 +138,9 @@ export function ExperienceMap({ overlay }: ExperienceMapProps) {
                   x={position.x}
                   y={position.y}
                   usePercent
-                  isActive={isActive}
-                  isDimmed={hasSelection && !isActive}
-                  onClick={() =>
+                  isActive={isProjectActive}
+                  isDimmed={hasSelectedProject && !isProjectActive}
+                  onSelect={() =>
                     setSelectedProject((current) =>
                       current?.id === project.id ? null : project,
                     )
@@ -191,19 +151,23 @@ export function ExperienceMap({ overlay }: ExperienceMapProps) {
           </div>
 
           <div
-            ref={labelsRef}
+            ref={labelsLayerRef}
             className="experience-map__layer experience-map__layer--labels"
           >
             {projects.map((project) => {
               const position = projectLayout[project.id];
-              if (!position) return null;
+              if (!position) {
+                return null;
+              }
 
               return (
                 <Label
                   key={project.id}
                   title={project.title}
                   isActive={selectedProject?.id === project.id}
-                  isDimmed={hasSelection && selectedProject?.id !== project.id}
+                  isDimmed={
+                    hasSelectedProject && selectedProject?.id !== project.id
+                  }
                   x={position.x}
                   y={position.y}
                   usePercent
@@ -215,7 +179,7 @@ export function ExperienceMap({ overlay }: ExperienceMapProps) {
           {overlay ? (
             <motion.div
               className="experience-map__overlay"
-              initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
